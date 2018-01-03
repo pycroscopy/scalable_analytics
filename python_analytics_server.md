@@ -35,7 +35,7 @@ You can follow CADES’ documentation in the link below but before you do please
 1.  In `step 4` of `Launch an Instance`:
     1. `Volume Size`: This is the size of the storage drive that will contain the operating system, data, python packages etc. Though the analytics server would still work with the minimum 8 GB volume that is used in the below instructions document, you are recommended to set this to 16 GB or larger. If you intend to use your birthright account exclusively for this analytics server, you can use up your entire quota (eg. 40 GB). Like any personal computer, you can always add volumes to your instance but starting off with a large enough volume can mitigate additional work. Please refer to the additional topics section at the end of this document if you already created an instance but need to add a new storage volume.
     2.  `Image` – choose `Ubuntu` as they do in the tutorial
-      ![](media/image002.png =360x280)
+      ![](media/image002.png)
 
 2.  In `step 5` of `Launch an Instance`:
     1.  `Flavor`: This mainly determines the number of processor cores and memory. You CAN change the flavor after creating the instance so do not worry about this step very much. Pick the flavor that best suits your applications:
@@ -89,12 +89,12 @@ The Mac `Terminal` application comes with utilities that simplify the ssh proces
 3.  Click on the `+` icon under the right-hand column (`Server`).
 4.  Type the address of your instance like `cades@172.22.3.50` into the pop up window as shown in the image below
 5.  Click `OK`.
-  ![](media/image007.png =240x240)
+  ![](media/image007.png)
 6.  You should see a new entry in the `Server` column.
-  ![](media/image009.png =240x240)
+  ![](media/image009.png)
 7.  We need to add another entry for connecting to the Jupyter server. For this, click on the `+` icon under the right-hand column (`Server`).
 8.  Type: `-N -L localhost:8889:localhost:8889 cades@172.22.3.50`. Replace the IP address with that of your machine. Click `OK`.
-  ![](media/image011.png =240x240)
+  ![](media/image011.png)
 9.  The first entry allows you to connect to your remote machine whereas the second (longer line) allows you to connect to your soon-to-be active jupyter server.
 10.  You can use the same entries for other services such as  `Secure File Transfer (sftp)`.
 
@@ -118,15 +118,15 @@ If you don’t have PuTTY installed, install it via the following links:
 #### 2.  Convert your private key to PuTTY Format:
 1.  Locate and execute `PuTTYGen.exe`.
 2.  Click the `Load` button.
-  ![](media/image013.png =300x300)
+  ![](media/image013.png)
 3.  In the resulting dialog, navigate to the location of your key file.
 4.  Select `All Files (*.*)` to show .pem files in the dialog.
 5.  Select the appropriate key file and click `Open`.
   ![](media/image015.png)
 6.  When prompted by the success message, click `OK`.
-  ![](media/image017.png =280x150)
+  ![](media/image017.png)
 7.  Save the loaded key by clicking `Save private key`.
-  ![](media/image019.png =300x300)
+  ![](media/image019.png)
 8.  Using the resulting dialog, save the key in an intuitive place (e.g., `C:\Users\Username\SSH`).
 9.  Place your private, ppk, and public keys in the above folder.
 
@@ -134,26 +134,26 @@ If you don’t have PuTTY installed, install it via the following links:
 1.  Locate and execute `PuTTY.exe`. 
 2.  In PuTTY's navigation pane, go to `Connection` → `SSH` → `Auth`.
 3.  In the `Options for controlling SSH authentication` screen, click `Browse`.
-  ![](media/image021.png =300x300)
+  ![](media/image021.png)
 4.  In the resulting dialog, find your .ppk file, and click `Open`.
   ![](media/image023.png)
 5.  In PuTTY's navigation pane, click Session.
 6.  In the Host Name (or IP address) field, enter the IP address of your VM Instance preceded by `cades` (e.g., `cades@172.22.3.50`). 
 7.  Ensure that the `SSH` radio button is selected and the `port` is set to 22.
 8.  Type a name like JupyterVM and click on the `Save` button so that you don’t need to perform the setup procedure repeatedly. This name need not match the name on Horizon.
-  ![](media/image025.png =300x300)
+  ![](media/image025.png)
 
 #### 4.  Configure the tunneling to connect to the Jupyter notebook server:
 1.  Go to `SSH` → `Tunnels`
 2.  Set the following:
   1. `Source port`: `8889`
   2. `Destination`: `127.0.0.1:8889`
-    ![](media/image027.png =300x300)
+    ![](media/image027.pn)
   3. Click on the `Add` button. You should see the following under `Forwarded ports`:
-  ![](media/image029.png =300x300)
+  ![](media/image029.png)
 
 3.  Go back to Session. Highlight the name of the configuration `PycroscopyVM`. and click on the `Save` button.
-  ![](media/image031.png =300x300)
+  ![](media/image031.png)
 4.  You can verify that the tunneling settings have been saved by:
     1.  Closing Putty,
     2. Reopening Putty,
@@ -165,7 +165,7 @@ If you don’t have PuTTY installed, install it via the following links:
 #### 5.  Connect to the instance:
 1.  After loading the appropriate session created in the preceding steps, click `Open` to connect to your VM Instance using SSH.
 2.  If and when prompted, choose to cache the server's fingerprint (click `Yes`).
-![](media/image033.png =320x180)
+![](media/image033.png)
 
 ## Step 3: Installing analytics packages on the instance:
 1. Download [Anaconda](https://www.anaconda.com/download/) 4.2 -&gt; python 3.5. You can download a different version if you wish.
@@ -279,7 +279,7 @@ Connection in the Mac Terminal app:
             selected on the left-hand side column, then select the second entry
             you made (`-N -L localhost:8889:localhost:8889 cades@172.22.3.50` in
             my case), and click on the `Connect` button in the bottom right.
-            ![](media/image035.png =300x300)
+            ![](media/image035.png)
 3.  Open a browser and go to: <http://localhost:8889/>
 
 ### Windows:
