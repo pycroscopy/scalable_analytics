@@ -1,5 +1,11 @@
 # Transferring Files
 
+**Suhas Somnath**<br>
+Advanced Data and Workflows Group<br>
+National Center for Computational Sciences
+
+10/9/2017
+
 With the exception to file transfers, most other topics regarding the operation of this VM are related to routine operation and administration of conventional Linux computers and you are recommended to refer to numerous online resources for these topics.
 
 ## Basic file transfers to / from the remote machine:
