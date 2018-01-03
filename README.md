@@ -1,9 +1,10 @@
 # Python analytics using ORNL CADES Birthright Cloud
 
-Please see the following self-help guides on:
-* [Basic setup and operation of the python analytics virtual machine](python_analytics_server.md)
+Start with [this guide](python_analytics_server.md) to set up your own the python analytics virtual machine.
+
+Self-help guides on additional topics:
 * [Transferring files between your local and virtual machines](sftp.md)
 * [Adding additional storage volumes for your data](mount_drive.md)
-* [Configuring ssh aliases](ssh_alias.md)
+* [Configuring ssh shortcuts](ssh_alias.md)
 
-If you have any tutorials that may benefit others, please feel free to add them here.
+If you have any guides that may benefit others, please feel free to add them here.
