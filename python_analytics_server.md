@@ -12,9 +12,11 @@ National Center for Computational Sciences
 -   These self-service instructions will guide you through the process of creating a `virtual machine` (VM) on the [CADES Birthright](http://support.cades.ornl.gov/index.php/birthright-cloud/) cloud (comparable to a powerful desktop computer and scalable) that you could use instead of your personal computer for data analysis via a [Jupyter](http://jupyter.org) notebook [server](https://www.youtube.com/watch?v=HW29067qVWk).
 -   The entire setup process (besides step 0) should take about 20 minutes. Once set up, connecting to the notebook server should only take a few button clicks.
 
-#### A few words on support:
+### Support:
 -   CADES provides the ability and support to create and use virtual machines. Users are free to use such VMs for a variety of purposes, such as running a Jupyter notebook server. Users are responsible for maintaining the software installed on their own VMs (e.g. - python packages, Jupyter server, etc.).
--   Please follow all steps in this guide to ensure a smooth setup of your analytics VM. For questions regarding the virtual machine itself (steps 0-2), please contact CADES. If you have any questions regarding the setup of anaconda, Jupyter, etc. (steps 3-6) please feel free to contact Suhas Somnath at <somnaths@ornl.gov>.
+-   Please follow all steps in this guide to ensure a smooth setup of your analytics VM. For questions regarding the virtual machine itself (steps 0-2), please contact CADES support at <cades-help@ornl.gov>. If you have any questions regarding the setup of anaconda, Jupyter, etc. (steps 3-6) please feel free to contact me at <somnaths@ornl.gov>.
+
+### Other notes:
 -   The remote machine runs the [Ubuntu](https://www.ubuntu.com/desktop) (Linux) operating system. You are recommended to take this [short tutorial](https://www.udacity.com/course/linux-command-line-basics--ud595) if you are new to Linux and/or the [command line interface](https://help.ubuntu.com/community/UsingTheTerminal).
 -   This document is limited to the instructions necessary for setting up a virtual machine for data analytics using python and is not intended to serve as a comprehensive manual for maintaining and administering your virtual Linux machine or implementing other advanced analytics features such as [JupyterHub](https://github.com/jupyterhub/jupyterhub). Please refer to other online resources for such topics.
 -   Though you can set up a [VM for analytics using R](http://support.cades.ornl.gov/user-documentation/_book/openstack/user-tutorials/shiny/shiny.html), this is *NOT* extendable to Matlab and similar proprietary / paid software packages.
