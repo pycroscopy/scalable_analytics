@@ -55,3 +55,5 @@ Note that You cannot use the `SFTP` session to unzip, open, modify the files etc
     ```bash
     $ get ./remote/folder/remote_file ./path/to/local/folder/
     ```
+### The standard Linux commands
+The standard Linux commands `pwd`, `mkdir`, `ls`, `cd`, etc. operate only on the remote machine. Add `l` (for local) as a prefix to these commands to perform the same operations on the local machine (your personal computer). For example, you would navigate the file structure on the virtual machine using `cd` and on your local machine using `lcd`.
