@@ -3,13 +3,13 @@
 Suhas Somnath<br>
 12/8/2017
 
-This is for Linux and MacOS **ONLY**
+For this, we will be using a popular command called `sshfs`
 
-For this, we will be using a popular open-source command called `sshfs`
+This guide was adapted from [DigitalOcean.com](https://www.digitalocean.com/community/tutorials/how-to-use-sshfs-to-mount-remote-file-systems-over-ssh)
 
-Mac users will need to visit [OSXFuse](https://osxfuse.github.io) and install `FUSE` followed by `SSHFS`.
+Follow the instructions in the above link to install the necessary packages.
 
-This tutorial was adapted from [DigitalOcean.com](https://www.digitalocean.com/community/tutorials/how-to-use-sshfs-to-mount-remote-file-systems-over-ssh)
+For example, MacOS users will need to visit [OSXFuse](https://osxfuse.github.io) and install `FUSE` followed by `SSHFS`.
 
 Below is a bash script to connect to a specific remote machine. 
 Modify **ONLY** the first three lines of this script and leave the last two lines as is
