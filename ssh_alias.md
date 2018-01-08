@@ -29,6 +29,8 @@ Host jupyterVM
 
 4. Access the remote machine:
 
-`ssh jupyterVM`
+`ssh jupyterVM` instead of `ssh cades@172.22.3.50`
+
+Other communication protocols including `sftp` are also simplified in the same way
 
 I do not have an answer yet on how to set up an alias for port forwarding. If you do, please feel free to share!
