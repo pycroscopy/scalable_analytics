@@ -20,6 +20,7 @@
 Self-help guides on additional topics:
 * [Transferring files between your local and virtual machines](sftp.md)
 * [Adding additional storage volumes for your data](mount_drive.md)
+* [Deep learning](deep_learning_container.md)
 * [Configuring ssh shortcuts](ssh_alias.md)
 
 If you have any guides that may benefit others, please feel free to add them here.
