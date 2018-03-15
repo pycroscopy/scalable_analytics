@@ -11,7 +11,7 @@ One could still manually install these frameworks via pip but such installation 
 
 The most popuar method for efficiently using these frameworks is by running inside a [Docker container](<https://www.docker.com/what-container>). Here are the steps that need to be followed to easily and efficiently get started with deep learning:
 1. Follow the official [instructions to create a virtual machine](http://support.cades.ornl.gov/index.php/birthright-cloud/) on the CADES Birthright cloud
-2. [Install Docker](http://support.cades.ornl.gov/user-documentation/_book/openstack/user-tutorials/docker/docker.html>)
+2. [Install Docker](http://support.cades.ornl.gov/user-documentation/_book/openstack/user-tutorials/docker/docker.html)
 3. Pull the Docker image of choice. In this example, we will pull the [official TensorFlow container](https://hub.docker.com/r/tensorflow/tensorflow/) for CPUs:
     ```bash
     $ sudo docker pull tensorflow/tensorflow
