@@ -42,8 +42,11 @@ The most popuar method for efficiently using these frameworks is by running insi
   a. You can either copy paste the entire web address (http://localhost:8888/?token=a-giant-alpha-numeric-string from step 5) or 
   b. Go to: [http://localhost:8888](http://localhost:8888) and paste the token number (with the option of setting your own password). 
 8. Once you are done working on the VM and want to shut down the container: 
+
     a. Use `Ctrl + C` twice to kill the jupyter server on your VM
+    
     b. Check to make sure that your container has been killed via: 
+    
     ```bash
     $ sudo docker container ls
     ```
