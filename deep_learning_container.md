@@ -16,6 +16,11 @@ The most popuar method for efficiently using these frameworks is by running insi
     ```bash
     $ sudo docker pull tensorflow/tensorflow
     ```
+    You can find containers for other deep learning frameworks on Docker too such as:
+        
+    * [MXNet](http://support.cades.ornl.gov/index.php/birthright-cloud/)
+    * [Caffe2](https://hub.docker.com/r/caffe2ai/caffe2/)
+    * [PyTorch](https://hub.docker.com/r/digitalgenius/ubuntu-pytorch/) etc.
 4. Get your data from your local machine via SCP or SFTP. Please refer to [this guide](./sftp.md) for instructions. Let us assume that the data and code sits in a folder with absolute path: `/home/cades/deep_learning`
 5. Run the container using the command below. 
     ```bash
@@ -28,20 +33,22 @@ The most popuar method for efficiently using these frameworks is by running insi
     ```bash 
     $ sudo docker run --help
     ```
-5. In this specific example, the container is set up to start a jupyter server on port `8888`. Do not close this terminal window. You can either note down the token number or copy paste the complete web address. You will need this on step 7.
+6. In this specific example, the container is set up to start a jupyter server on port `8888`. Do not close this terminal window. You can either note down the token number or copy paste the complete web address. You will need this on step 9.
     ```bash
         Copy/paste this URL into your browser when you connect for the first time,
         to login with a token:
             http://localhost:8888/?token=a-giant-alpha-numeric-string
     ```
-6. On your local machine (laptop / desktop) - start an SSH tunnel via the following command on the Terminal. I've shown instructions for Linux / Mac here. For more instructions on this step + simplifications, please refer to my instructions on [setting up a python analytics VM](./python_analytics_server.md)
+7. On your local machine (laptop / desktop) - start an SSH tunnel via the following command on the Terminal. I've shown instructions for Linux / Mac here. For more instructions on this step + simplifications, please refer to my instructions on [setting up a python analytics VM](./python_analytics_server.md)
     ```
     $ ssh -N -L localhost:8888:localhost:8888 cades@ip-address-of-your-vm-here
     ```
-7. Access the jupyter server running on your VM using your favorite internet browser (Internet explorer and Safari not recommended)- You can do this in one of two ways. 
-  a. You can either copy paste the entire web address (http://localhost:8888/?token=a-giant-alpha-numeric-string from step 5) or 
-  b. Go to: [http://localhost:8888](http://localhost:8888) and paste the token number (with the option of setting your own password). 
-8. Once you are done working on the VM and want to shut down the container: 
+8. Access the jupyter server running on your VM using your favorite internet browser (Internet explorer and Safari not recommended)- You can do this in one of two ways:
+
+    * You can either copy paste the entire web address (http://localhost:8888/?token=a-giant-alpha-numeric-string from step 6) or 
+    * OR go to: [http://localhost:8888](http://localhost:8888) and paste the token number (with the option of setting your own password). 
+  
+9. Once you are done working on the VM and want to shut down the container: 
 
     a. Use `Ctrl + C` twice to kill the jupyter server on your VM
     
