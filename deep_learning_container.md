@@ -43,14 +43,23 @@ The most popuar method for efficiently using these frameworks is by running insi
   b. Go to: [http://localhost:8888](http://localhost:8888) and paste the token number (with the option of setting your own password). 
 8. Once you are done working on the VM and want to shut down the container: 
     a. Use `Ctrl + C` twice to kill the jupyter server on your VM
-    b. Check to make sure that your container has been killed via: `$ sudo docker container ls`
-        * If you see something like:
+    b. Check to make sure that your container has been killed via: 
+    ```bash
+    $ sudo docker container ls
+    ```
+    
+    If you see something like:
         
-        ```bash
+    ```bash
+
+    CONTAINER ID        IMAGE                   COMMAND                  CREATED             STATUS              PORTS                                                  NAMES
+
+    77e04f817e88        tensorflow/tensorflow   "/run_jupyter.sh -..."   2 minutes ago       Up 2 minutes        6006/tcp, 0.0.0.0:8888->8888/tcp   jovial_albattani
+    ```
         
-        CONTAINER ID        IMAGE                   COMMAND                  CREATED             STATUS              PORTS                                                  NAMES
-        
-        77e04f817e88        tensorflow/tensorflow   "/run_jupyter.sh -..."   2 minutes ago       Up 2 minutes        6006/tcp, 0.0.0.0:8888->8888/tcp   jovial_albattani
-        ```
-        * Kill the container via: `$ sudo docker container kill 77e04f817e88`
+    Kill the container via: 
+    ```bash
+    $ sudo docker container kill 77e04f817e88
+    ```
+    
     c. You are now free to type `$ exit` to close your ssh connection to your VM
