@@ -170,64 +170,66 @@ If you don’t have PuTTY installed, install it via the following links:
 
 ## Step 3: Installing analytics packages on the instance:
 1. Download [Anaconda](https://www.anaconda.com/download/) 4.2 -&gt; python 3.5. You can download a different version if you wish.
+
   ```bash
   $ mkdir temp
-  $ curl https://repo.continuum.io/archive/Anaconda3-4.2.0-Linux-x86_64.sh temp/Anaconda3-4.2.0-Linux-x86_64.sh
+  $ curl https://repo.continuum.io/archive/Anaconda3-4.2.0-Linux-x86_64.sh > temp/Anaconda3-4.2.0-Linux-x86_64.sh
   ```
 
 2. Change privileges before installing Anaconda
+
   ```bash
   $ chmod +x temp/Anaconda3-4.2.0-Linux-x86_64.sh
   ```
 
 3. Install Anaconda:
-  1. Start the installer
-    ```bash
-    $ bash temp/Anaconda3-4.2.0-Linux-x86_64.sh
-    ```
-
-  2. Follow the prompts to install Anaconda. Accept the license, say yes to installing to the default location, say yes to prepending anaconda to the path.
-  3. Delete temporary installation folder:
-    ```bash
-    $ rm -r temp
-    ```
-
+    1. Start the installer
+        ```bash
+		$ bash temp/Anaconda3-4.2.0-Linux-x86_64.sh
+	    ```
+    2. Follow the prompts to install Anaconda. Accept the license, say yes to installing to the default location, say yes to prepending anaconda to the path.
+    3. Delete temporary installation folder:
+        ```bash
+        $ rm -r temp
+        ```
 4. Switch to anaconda environment:
-  ```bash
-  $ source ~/.bashrc
-  ```
-
+	```bash
+	$ source ~/.bashrc
+	```
 5. Install missing packages for wholesome Jupyter functionality:
-  1. Enable ability to export to pdf in Jupyter:
-    ```bash
-    $ conda install -c anaconda-nb-extensions nbbrowserpdf
-    ```
+	  
+    1. Enable ability to export to pdf in Jupyter:
+        ```bash
+	    $ conda install -c anaconda-nb-extensions nbbrowserpdf
+        ```
 
-  2. Enable javascript for interactive elements in Jupyter:
-    ```bash
-    $ jupyter nbextension enable --py --sys-prefix widgetsnbextension
-    ```
+	2. Enable javascript for interactive elements in Jupyter:
+	    ```bash
+        $ jupyter nbextension enable --py --sys-prefix widgetsnbextension
+        ```
 
 6. *OPTIONAL:* To simplify the command to start up the Jupyter notebook:
-  1. First create the configuration file:
+
+	1. First create the configuration file:
     ```bash
     $ jupyter notebook --generate-config
     ```
 
-  2. open up the notebook:
+	2. open up the notebook:
     ```bash
     $ nano ~/.jupyter/jupyter_notebook_config.py
     ```
 
-  3. Use the key combination `Ctrl+W` to search for `.open_browswer`
-  4. uncomment the line
-  5. set the flag to `False`
-  6. search for `NotebookApp.port = 8888` using `Ctrl+W`
-  7. uncomment the line
-  8. set the `port` number to `8889` (or any number &gt; 1024 for that matter)
-  9. Close the editor with `Ctrl+X`
-  10. Save the file
-7. *OPTIONAL:* Install additional packages such as TensorFlow, etc. You can always install packages later on.
+	3. Use the key combination `Ctrl+W` to search for `.open_browswer`
+	4. uncomment the line
+	5. set the flag to `False`
+	6. search for `NotebookApp.port = 8888` using `Ctrl+W`
+	7. uncomment the line
+	8. set the `port` number to `8889` (or any number &gt; 1024 for that matter)
+	9. Close the editor with `Ctrl+X`
+	10. Save the file
+
+7. *OPTIONAL* - You can always install any python packages from this point on. You could install deep-learning frameworks like Keras or TensorFlow but you are recommended to use optimized Docker containers for this. Please refer to [this separate tutorial](https://github.com/pycroscopy/cades_birthright/blob/master/deep_learning_container.md) for this.
 
 ## Step 4: Starting a Jupyter server:
 
