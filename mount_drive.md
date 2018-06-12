@@ -12,20 +12,20 @@ You cannot resize the boot volume size after your instance is created. Refer to 
 
 **Option 1: Expand your existing volume**
 
-Pros
- <li> Requires no system admin work</li>
+Pros:
+ <li> Requires no system admin work</li><br>
 
- Cons
+Cons:
  <li> Must create a new Virtual Machine</li>
- <li>Generates a new IP address for Virtual Machine</li>
+ <li>Generates a new IP address for Virtual Machine</li><br>
 
 **Option 2: Add an additional volume**
 
-Pros
+Pros:
 <li> Keeps your IP address </li>
-<li>Add as many volumes as you like</li>
+<li>Add as many volumes as you like</li><br>
 
-Cons
+Cons:
 <li> Requires  fair amount of system admin work </li>
 
 
@@ -40,17 +40,12 @@ Cons
 - Login with your UCAMS credentials.
 
 - Navigate to `Project` &#8594; `Compute` &#8594; `Volumes`.
-<p align=center>
 
-  ![](/media/mount_drive_screenshots/volumesNavigation.png)
-</p>
+![](/media/mount_drive_screenshots/volumesNavigation.png)
 
 - Check the Bootable column for your volume. It should read "Yes" in the cell.
 
-<p align=center>
-
-  ![](/media/mount_drive_screenshots/bootable.png)
-</p>
+![](https://github.com/pycroscopy/cades_birthright/blob/master/media/mount_drive_screenshots/bootable.PNG)
 
 - If the volume is not bootable, click `Edit Volume`.
 
@@ -60,26 +55,17 @@ Cons
 
 1. Navigate to `Project` &#8594; `Compute` &#8594; `Instances`.
 
-<p align=center>
-
-  ![](/media/mount_drive_screenshots/instancesNavigation.png)
-</p>
+![](/media/mount_drive_screenshots/instancesNavigation.png)
 
 2. Select the box next to your instance name, then click `Delete Instances`.
 
-<p align=center>
-
-  ![](/media/mount_drive_screenshots/deleteInstance.png)
-</p>
+![](https://github.com/pycroscopy/cades_birthright/blob/master/media/mount_drive_screenshots/deleteInstance.PNG)
 
 3. Navigate to the `Volumes` tab.
 
 4. Resize your volume by clicking the down arrow next to `Edit Volume` then select `Extend Volume`.
 
-<p align=center>
-
-  ![](/media/mount_drive_screenshots/extendVolume.png)
-</p>
+![](https://github.com/pycroscopy/cades_birthright/blob/master/media/mount_drive_screenshots/extendVolume.PNG)
 
 5. In the resulting dialog, enter the desired size in the New Size (GiB) field.
 
@@ -87,20 +73,13 @@ Cons
 
 7. Click the down arrow next to `Edit Volume` again, then select `Launch as Instance`.
 
-<p align=center>
-
-  ![](/media/mount_drive_screenshots/volumeLaunchInstance.png)
-</p>
+![](https://github.com/pycroscopy/cades_birthright/blob/master/media/mount_drive_screenshots/volumeLaunchInstance.PNG)
 
 8. Fill out the tabs in the resulting dialog box for your new instance.
 
-  - Under the Source Tab, ensure that your volume appears under the Allocated table with the correct size.
+* Under the Source Tab, ensure that your volume appears under the Allocated table with the correct size.
 
-<p align=center>
-
-    ![](/media/mount_drive_screenshots/allocated.png)
-  </p>
-
+![](https://github.com/pycroscopy/cades_birthright/blob/master/media/mount_drive_screenshots/allocated.PNG)
 
 9. Once you have entered all required fields, click `Launch Instance`. The instance will have a new IP address which will change the way you access your Virtual Machine. Refer to [Access Your VM Instance Running in OpenStack](http://support.cades.ornl.gov/user-documentation/_book/openstack/access-vm/access-vm.html) for additional help.
 
@@ -109,46 +88,35 @@ Cons
 
 Add an additional volume – this requires you to do some system admin work on your instance and is similar to working on a local Linux machine.
 
-  1.  Go to Horizon at <http://cloud.cades.ornl.gov/> and login with your UCAMS credentials.
+1.  Go to Horizon at <http://cloud.cades.ornl.gov/> and login with your UCAMS credentials.
 
-  2.  Navigate to `Project` &#8594; `Compute` &#8594; `Volumes`.
+2.  Navigate to `Project` &#8594; `Compute` &#8594; `Volumes`.
 
-<p align=center>
+![](/media/mount_drive_screenshots/volumesNavigation.png)
 
-  ![](/media/mount_drive_screenshots/volumesNavigation.png)
-</p>
+3.  In the Volumes screen, click `+ Create a New Volume`.
 
-  3.  In the Volumes screen, click `+ Create a New Volume`.
+![](https://github.com/pycroscopy/cades_birthright/blob/master/media/mount_drive_screenshots/createVolume.PNG)
 
-<p align=center>
+4.  In the resulting Create Volume dialog, fill out the required field by entering the size of your new volume.
+ - `Volume Name`: a case-sensitive sequence of characters naming the volume.
+ - `Description`: short description of the volume
+ - `Volume Source`: the default value is "No source, empty value".
+ - `Type`: the type is default to "Net Type". However, if your requires a higher volume of data, utilize "Large_Data_Store".
+ - **(Required)** `Size`: Enter the desired size in GiB.
+ - Availability Zone: The default value is set to "nova".
 
-  ![](/media/mount_drive_screenshots/createVolume.png)
-</p>
+5.  Select `Create Volume` in the bottom right dialog to continue. The new volume should appear under the `Volumes` tab.
 
-  4.  In the resulting Create Volume dialog, fill out the required field by entering the size of your new volume.
-   - `Volume Name`: a case-sensitive sequence of characters naming the volume.
-   - `Description`: short description of the volume
-   - `Volume Source`: the default value is "No source, empty value".
-   - `Type`: the type is default to "Net Type". However, if your requires a higher volume of data, utilize "Large_Data_Store".
-   - **(Required)** `Size`: Enter the desired size in GiB.
-   - Availability Zone: The default value is set to "nova".
+6.  Next, attach it to your existing instance by selecting the down arrow next to `Edit Volume` then select `Manage Attachments`.
 
+![](https://github.com/pycroscopy/cades_birthright/blob/master/media/mount_drive_screenshots/manageAttachments.PNG)
 
-  5.  Select `Create Volume` in the bottom right dialog to continue. The new volume should appear under the `Volumes` tab.
+ 7. In the resulting Manage Volume Attachments dialog, fill out the required field by selecting the appropriate instance.
 
+ 8.   Click `Attach Volume` to continue.
 
-  6.  Next, attach it to your existing instance by selecting the down arrow next to `Edit Volume` then select `Manage Attachments`.
-
-<p align=center>
-
-  ![](/media/mount_drive_screenshots/manageAttachments.png)
-</p>
-
-  7. In the resulting Manage Volume Attachments dialog, fill out the required field by selecting the appropriate instance.
-
-  8.   Click `Attach Volume` to continue.
-
-  9.  [Format and mount the volume in your instance](https://docs.oracle.com/cloud/latest/computecs\_common/OCSUG/GUID-7393768A-A147-444D-9D91-A56550604EE5.htm\#OCSUG196) (see below) :
+ 9.  [Format and mount the volume in your instance](https://docs.oracle.com/cloud/latest/computecs\_common/OCSUG/GUID-7393768A-A147-444D-9D91-A56550604EE5.htm\#OCSUG196) (see below) :
 
     - Access your VM instance's bash terminal (for additional help refer to [Access VM Instances Running in Open Stack](http://support.cades.ornl.gov/user-documentation/_book/openstack/access-vm/access-vm-ssh-windows.html)).
 
