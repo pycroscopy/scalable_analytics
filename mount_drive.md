@@ -8,18 +8,30 @@ Oak Ridge National Laboratory
 Updated: 06/12/2018
 
 
-**You cannot resize the boot volume size after your instance is created.
-Refer to the two options below:**
+You cannot resize the boot volume size after your instance is created. Refer to the two options below:
 
-| Option 1: Expand your existing volume | Option 2: Add an additional volume
---- | --- | ---
-**Pros** | <li> Requires no system admin work</li>| <li> Keeps your IP address </li><li>Add as many volumes as you like</li>
-**Cons** | <li> Must create a new Virtual Machine</li><li>Generates a new IP address for Virtual Machine</li> | <li> Requires  fair amount of system admin work </li>
+**Option 1: Expand your existing volume**
+
+Pros
+ <li> Requires no system admin work</li>
+
+ Cons
+ <li> Must create a new Virtual Machine</li>
+ <li>Generates a new IP address for Virtual Machine</li>
+
+**Option 2: Add an additional volume**
+
+Pros
+<li> Keeps your IP address </li>
+<li>Add as many volumes as you like</li>
+
+Cons
+<li> Requires  fair amount of system admin work </li>
 
 
 ## Option 1
 
-**Deleting your instance means that you must create a new one.** Proceed only if you ensured that your volume would not be deleted upon deletion of your instance and do not mind losing the IP address of your machine.
+**Deleting your instance means that you must create a new one.** Proceed only if you ensured that your volume would not be deleted upon deletion of your instance and do not mind losing the IP address of your machine.<br>
 
 **Prerequisite: Ensure that your volume is a bootable type.**
 
@@ -31,13 +43,14 @@ Refer to the two options below:**
 <p align=center>
 
   ![](/media/mount_drive_screenshots/volumesNavigation.png)
-  </p>
+</p>
 
 - Check the Bootable column for your volume. It should read "Yes" in the cell.
 
-  <p align=center>
+<p align=center>
+
   ![](/media/mount_drive_screenshots/bootable.png)
-  </p>
+</p>
 
 - If the volume is not bootable, click `Edit Volume`.
 
@@ -47,23 +60,26 @@ Refer to the two options below:**
 
 1. Navigate to `Project` &#8594; `Compute` &#8594; `Instances`.
 
-  <p align=center>
+<p align=center>
+
   ![](/media/mount_drive_screenshots/instancesNavigation.png)
-  </p>
+</p>
 
 2. Select the box next to your instance name, then click `Delete Instances`.
 
-  <p align=center>
+<p align=center>
+
   ![](/media/mount_drive_screenshots/deleteInstance.png)
-  </p>
+</p>
 
 3. Navigate to the `Volumes` tab.
 
 4. Resize your volume by clicking the down arrow next to `Edit Volume` then select `Extend Volume`.
 
-  <p align=center>
+<p align=center>
+
   ![](/media/mount_drive_screenshots/extendVolume.png)
-  </p>
+</p>
 
 5. In the resulting dialog, enter the desired size in the New Size (GiB) field.
 
@@ -71,17 +87,19 @@ Refer to the two options below:**
 
 7. Click the down arrow next to `Edit Volume` again, then select `Launch as Instance`.
 
-  <p align=center>
+<p align=center>
+
   ![](/media/mount_drive_screenshots/volumeLaunchInstance.png)
-  </p>
+</p>
 
 8. Fill out the tabs in the resulting dialog box for your new instance.
 
   - Under the Source Tab, ensure that your volume appears under the Allocated table with the correct size.
 
-    <p align=center>
+<p align=center>
+
     ![](/media/mount_drive_screenshots/allocated.png)
-    </p>
+  </p>
 
 
 9. Once you have entered all required fields, click `Launch Instance`. The instance will have a new IP address which will change the way you access your Virtual Machine. Refer to [Access Your VM Instance Running in OpenStack](http://support.cades.ornl.gov/user-documentation/_book/openstack/access-vm/access-vm.html) for additional help.
@@ -95,15 +113,17 @@ Add an additional volume – this requires you to do some system admin work on y
 
   2.  Navigate to `Project` &#8594; `Compute` &#8594; `Volumes`.
 
-  <p align=center>
+<p align=center>
+
   ![](/media/mount_drive_screenshots/volumesNavigation.png)
-  </p>
+</p>
 
   3.  In the Volumes screen, click `+ Create a New Volume`.
 
-  <p align=center>
+<p align=center>
+
   ![](/media/mount_drive_screenshots/createVolume.png)
-  </p>
+</p>
 
   4.  In the resulting Create Volume dialog, fill out the required field by entering the size of your new volume.
    - `Volume Name`: a case-sensitive sequence of characters naming the volume.
@@ -119,9 +139,10 @@ Add an additional volume – this requires you to do some system admin work on y
 
   6.  Next, attach it to your existing instance by selecting the down arrow next to `Edit Volume` then select `Manage Attachments`.
 
-  <p align=center>
+<p align=center>
+
   ![](/media/mount_drive_screenshots/manageAttachments.png)
-  </p>
+</p>
 
   7. In the resulting Manage Volume Attachments dialog, fill out the required field by selecting the appropriate instance.
 
@@ -136,102 +157,102 @@ Add an additional volume – this requires you to do some system admin work on y
         ```bash
         $ lsblk
         ```
-      - You should see something like:
-
-        ```bash
-        # NAME   MAJ:MIN RM SIZE RO TYPE MOUNTPOINT
-        # vda    253:0    0   8G  0 disk
-        # └─vda1 253:1    0   8G  0 part /
-        # vdb    253:16   0  80G  0 disk
-        ```
-      - In our case, *vdb* is the volume we want to mount. In the bash type the following:
-
-        ```bash
-        $ sudo fdisk /dev/vdb
-        ```
-
-      - In the prompts do the following to set the correct flags:
-
-        * type: *c* and hit *enter*
-        * type: *u* and hit *enter*
-        * type: *w* and hit *enter*
-        </br>
-        </br>
-      - Next, find out what file system is being used on the boot drive, let’s use the same:
-
-        ```bash
-        $ mount | grep "\^/dev"
-        ```
-      - This should show you something like:
-
-        ```bash
-        # /dev/vda1 on / type ext4 (rw,relatime,data=ordered)
-        ```
-      - Make the file system on the new volume:
-
-        ```bash
-        $ sudo mkfs -t ext4 /dev/vdb
-        ```
-      - If asked to overwrite the partition table, type: *y* then hit *enter*.
-
-      - Make a new folder. This is where the data will be stored.
-
-        ```bash
-        $ cd \~
-        $ mdkir data
-        ```
-      - Finally, mount the volume.
-
-        ```bash
-        $ sudo mount /dev/vdb /home/cades/data
-        ```
-
-      - You should see two lines now:
-
-        ```bash
-        # /dev/vda1 on / type ext4 (rw,relatime,data=ordered)
-        # /dev/vdb on /home/cades/data type ext4 (rw,relatime,data=ordered)
-        ```
-      - Verify that the mounting was done correctly:
-
-        ```bash
-        $ lsblk
-        ```
-      - You should see something like:
-
-        ```bash
-        # NAME MAJ:MIN RM SIZE RO TYPE MOUNTPOINT
-        # vda 253:0 0 8G 0 disk
-        # └─vda1 253:1 0 8G 0 part /
-        # vdb 253:16 0 80G 0 disk /home/cades/data
-        ```
-    - Check to see that data is indeed on the new volume:
-
-        ```bash
-        $ df anaconda/
-        ```
     - You should see something like:
 
-        ```bash
-        # Filesystem 1K-blocks Used Available Use% Mounted on
-        # /dev/vda1 8065444 5962536 2086524 75% /
-        ```
-      - This indicates that anaconda is on the boot drive (_/dev/vda1_). Let's do the same for the newly mounted volume at _/data/_:
+      ```bash
+      # NAME   MAJ:MIN RM SIZE RO TYPE MOUNTPOINT
+      # vda    253:0    0   8G  0 disk
+      # └─vda1 253:1    0   8G  0 part /
+      # vdb    253:16   0  80G  0 disk
+      ```
+    - In our case, *vdb* is the volume we want to mount. In the bash type the following:
 
-        ```bash
-        $ df data/
-        ```
-      - You should see something like:
+      ```bash
+      $ sudo fdisk /dev/vdb
+      ```
 
-        ```bash
-        # Filesystem 1K-blocks Used Available Use% Mounted on
-        # /dev/vdb 82438832 57088 78171056 1% /home/cades/data
-        ```
-      - Clearly, the new folder data is actually on the new volume */dev/vdb*
-  while the other folder anaconda was on the boot drive */dev/vda1*.
+    - In the prompts do the following to set the correct flags:
 
-    - Move any data from your fixed sized boot volume to the new volume.
+      * type: *c* and hit *enter*
+      * type: *u* and hit *enter*
+      * type: *w* and hit *enter*
+      </br>
+      </br>
+    - Next, find out what file system is being used on the boot drive, let’s use the same:
 
-        ```bash
-        $ sudo mv old/folder/on/boot/volume/\* data/
-        ```
+      ```bash
+      $ mount | grep "\^/dev"
+      ```
+    - This should show you something like:
+
+      ```bash
+      # /dev/vda1 on / type ext4 (rw,relatime,data=ordered)
+      ```
+    - Make the file system on the new volume:
+
+      ```bash
+      $ sudo mkfs -t ext4 /dev/vdb
+      ```
+    - If asked to overwrite the partition table, type: *y* then hit *enter*.
+
+    - Make a new folder. This is where the data will be stored.
+
+      ```bash
+      $ cd \~
+      $ mdkir data
+      ```
+    - Finally, mount the volume.
+
+      ```bash
+      $ sudo mount /dev/vdb /home/cades/data
+      ```
+
+    - You should see two lines now:
+
+      ```bash
+      # /dev/vda1 on / type ext4 (rw,relatime,data=ordered)
+      # /dev/vdb on /home/cades/data type ext4 (rw,relatime,data=ordered)
+      ```
+    - Verify that the mounting was done correctly:
+
+      ```bash
+      $ lsblk
+      ```
+    - You should see something like:
+
+      ```bash
+      # NAME MAJ:MIN RM SIZE RO TYPE MOUNTPOINT
+      # vda 253:0 0 8G 0 disk
+      # └─vda1 253:1 0 8G 0 part /
+      # vdb 253:16 0 80G 0 disk /home/cades/data
+      ```
+   - Check to see that data is indeed on the new volume:
+
+      ```bash
+      $ df anaconda/
+      ```
+   - You should see something like:
+
+      ```bash
+      # Filesystem 1K-blocks Used Available Use% Mounted on
+      # /dev/vda1 8065444 5962536 2086524 75% /
+      ```
+    - This indicates that anaconda is on the boot drive (_/dev/vda1_). Let's do the same for the newly mounted volume at _/data/_:
+
+      ```bash
+      $ df data/
+      ```
+    - You should see something like:
+
+      ```bash
+      # Filesystem 1K-blocks Used Available Use% Mounted on
+      # /dev/vdb 82438832 57088 78171056 1% /home/cades/data
+      ```
+    - Clearly, the new folder data is actually on the new volume */dev/vdb*
+while the other folder anaconda was on the boot drive */dev/vda1*.
+
+   - Move any data from your fixed sized boot volume to the new volume.
+
+      ```bash
+      $ sudo mv old/folder/on/boot/volume/\* data/
+      ```
