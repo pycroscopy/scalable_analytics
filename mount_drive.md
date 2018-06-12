@@ -1,144 +1,237 @@
-# Adding additional volumes (storage drives)
+# Adding Additional Volumes (Storage Drives)
 
-**Suhas Somnath**<br>
+**Suhas Somnath and Whitney Nelson**<br>
 Advanced Data and Workflows Group<br>
 National Center for Computational Sciences<br>
 Oak Ridge National Laboratory
 
-10/9/2017
-
-**Note that this document is a work in progress and proceed with caution**
-
-You cannot resize the boot volume size after your instance is created.
-Two solutions to this are:
-
-1.  Expanding your existing volume – If you ensured that your volume
-    would not be deleted upon deletion of your instance and do not mind
-    losing the IP address of your machine:
-    1.  Delete your instance on Horizon
-    2.  Go to the Volumes section and resize your volume.
-    3.  Create a new instance and use this existing volume instead of
-        creating a new one.
-    4.  You would have to delete your instance
-
-2.  Adding an additional volume – this requires you to do some sys admin
-    work on your instance and is similar to working on a local Linux
-    machine
-    1.  Go to Horizon
-    2.  Create a new volume
-    3.  Attach it to your existing instance
-    4.  Follow sys admin procedures to mount this volume (see below).
+Updated: 06/12/2018
 
 
-1.  Create a new volume on Horizon
-    1.  Go to Horizon → Compute tab → Volumes sub-tab
-        ![](media/image019.png)
-    2.  Click on the Volumes tab...
+**You cannot resize the boot volume size after your instance is created.
+Refer to the two options below:**
 
-2.  Attach this volume to your instance on Horizon
-3.  [Format and mount the volume in your instance](https://docs.oracle.com/cloud/latest/computecs\_common/OCSUG/GUID-7393768A-A147-444D-9D91-A56550604EE5.htm\#OCSUG196):
+| Option 1: Expand your existing volume | Option 2: Add an additional volume
+--- | --- | ---
+**Pros** | <li> Requires no system admin work</li>| <li> Keeps your IP address </li><li>Add as many volumes as you like</li>
+**Cons** | <li> Must create a new Virtual Machine</li><li>Generates a new IP address for Virtual Machine</li> | <li> Requires  fair amount of system admin work </li>
 
-Find out the name of the new volume:
 
-```bash
-$ lsblk
-```
+## Option 1
 
-You should see something like:
+**Deleting your instance means that you must create a new one.** Proceed only if you ensured that your volume would not be deleted upon deletion of your instance and do not mind losing the IP address of your machine.
 
-```bash
-# NAME   MAJ:MIN RM SIZE RO TYPE MOUNTPOINT
-# vda    253:0    0   8G  0 disk 
-# └─vda1 253:1    0   8G  0 part /
-# vdb    253:16   0  80G  0 disk
-```
-Here _vdb_ is the volume we want to mount. Here's how we mount the volume:
+**Prerequisite: Ensure that your volume is a bootable type.**
 
-```bash
-$ sudo fdisk /dev/vdb
-```
-in the prompts do the following to set the correct flags:
+- Go to Horizon at <http://cloud.cades.ornl.gov/>.
 
-* type: _c_ and hit _enter_
-* type: _u_ and hit _enter_
-* type: _w_ and hit _enter_
+- Login with your UCAMS credentials.
 
-Next, find out what file system is being used on the boot drive, let’s use the same:
+- Navigate to `Project` &#8594; `Compute` &#8594; `Volumes`.
+<p align=center>
 
-```bash
-$ mount | grep "\^/dev"
-```
-This should show you something like:
+  ![](/media/mount_drive_screenshots/volumesNavigation.png)
+  </p>
 
-```bash
-# /dev/vda1 on / type ext4 (rw,relatime,data=ordered)
-```
-Make the file system on the new volume:
+- Check the Bootable column for your volume. It should read "Yes" in the cell.
 
-```bash
-$ sudo mkfs -t ext4 /dev/vdb
-```
-If asked to overwrite the partition table, type: _y_ and hit _enter_
+  <p align=center>
+  ![](/media/mount_drive_screenshots/bootable.png)
+  </p>
 
-Make a new folder which is where the data will be stored.
+- If the volume is not bootable, click `Edit Volume`.
 
-```bash
-$ cd \~
-$ mdkir data
-```
-Finally mount the volume:
+- In the resulting dialog, check the `Bootable ` box then click submit. The cell under the Bootable column should now read "Yes".
 
-```bash
-$ sudo mount /dev/vdb /home/cades/data
-```
+**Expanding your existing volume:**
 
-You should see two lines now:
+1. Navigate to `Project` &#8594; `Compute` &#8594; `Instances`.
 
-```bash
-# /dev/vda1 on / type ext4 (rw,relatime,data=ordered)
-# /dev/vdb on /home/cades/data type ext4 (rw,relatime,data=ordered)
-```
-Verify that the mounting was done correctly:
+  <p align=center>
+  ![](/media/mount_drive_screenshots/instancesNavigation.png)
+  </p>
 
-```bash
-$ lsblk
-```
-You should see something like:
+2. Select the box next to your instance name, then click `Delete Instances`.
 
-```bash
-# NAME MAJ:MIN RM SIZE RO TYPE MOUNTPOINT
-# vda 253:0 0 8G 0 disk
-# └─vda1 253:1 0 8G 0 part /
-# vdb 253:16 0 80G 0 disk /home/cades/data
-```
-Check to see that data is indeed on the new volume:
+  <p align=center>
+  ![](/media/mount_drive_screenshots/deleteInstance.png)
+  </p>
 
-```bash
-$ df anaconda/
-```
-You should see something like:
+3. Navigate to the `Volumes` tab.
 
-```bash
-# Filesystem 1K-blocks Used Available Use% Mounted on
-# /dev/vda1 8065444 5962536 2086524 75% /
-```
-This indicates that anaconda is on the boot drive (_/dev/vda1_). 
-Let's do the same for the newly mounted volume at _/data/_:
+4. Resize your volume by clicking the down arrow next to `Edit Volume` then select `Extend Volume`.
 
-```bash
-$ df data/
-```
-You should see something like:
+  <p align=center>
+  ![](/media/mount_drive_screenshots/extendVolume.png)
+  </p>
 
-```bash
-# Filesystem 1K-blocks Used Available Use% Mounted on
-# /dev/vdb 82438832 57088 78171056 1% /home/cades/data
-```
-Clearly, the new folder data is actually on the new volume _/dev/vdb_
-while the other folder anaconda was on the boot drive _/dev/vda1_
+5. In the resulting dialog, enter the desired size in the New Size (GiB) field.
 
-Move any data from your fixed sized boot volume to the new volume:
+6. Click `Extend Volume`. The new volume size should appear in the Size column of your volume.
 
-```bash
-$ sudo mv old/folder/on/boot/volume/\* data/
-```
+7. Click the down arrow next to `Edit Volume` again, then select `Launch as Instance`.
+
+  <p align=center>
+  ![](/media/mount_drive_screenshots/volumeLaunchInstance.png)
+  </p>
+
+8. Fill out the tabs in the resulting dialog box for your new instance.
+
+  - Under the Source Tab, ensure that your volume appears under the Allocated table with the correct size.
+
+    <p align=center>
+    ![](/media/mount_drive_screenshots/allocated.png)
+    </p>
+
+
+9. Once you have entered all required fields, click `Launch Instance`. The instance will have a new IP address which will change the way you access your Virtual Machine. Refer to [Access Your VM Instance Running in OpenStack](http://support.cades.ornl.gov/user-documentation/_book/openstack/access-vm/access-vm.html) for additional help.
+
+
+## Option 2
+
+Add an additional volume – this requires you to do some system admin work on your instance and is similar to working on a local Linux machine.
+
+  1.  Go to Horizon at <http://cloud.cades.ornl.gov/> and login with your UCAMS credentials.
+
+  2.  Navigate to `Project` &#8594; `Compute` &#8594; `Volumes`.
+
+  <p align=center>
+  ![](/media/mount_drive_screenshots/volumesNavigation.png)
+  </p>
+
+  3.  In the Volumes screen, click `+ Create a New Volume`.
+
+  <p align=center>
+  ![](/media/mount_drive_screenshots/createVolume.png)
+  </p>
+
+  4.  In the resulting Create Volume dialog, fill out the required field by entering the size of your new volume.
+   - `Volume Name`: a case-sensitive sequence of characters naming the volume.
+   - `Description`: short description of the volume
+   - `Volume Source`: the default value is "No source, empty value".
+   - `Type`: the type is default to "Net Type". However, if your requires a higher volume of data, utilize "Large_Data_Store".
+   - **(Required)** `Size`: Enter the desired size in GiB.
+   - Availability Zone: The default value is set to "nova".
+
+
+  5.  Select `Create Volume` in the bottom right dialog to continue. The new volume should appear under the `Volumes` tab.
+
+
+  6.  Next, attach it to your existing instance by selecting the down arrow next to `Edit Volume` then select `Manage Attachments`.
+
+  <p align=center>
+  ![](/media/mount_drive_screenshots/manageAttachments.png)
+  </p>
+
+  7. In the resulting Manage Volume Attachments dialog, fill out the required field by selecting the appropriate instance.
+
+  8.   Click `Attach Volume` to continue.
+
+  9.  [Format and mount the volume in your instance](https://docs.oracle.com/cloud/latest/computecs\_common/OCSUG/GUID-7393768A-A147-444D-9D91-A56550604EE5.htm\#OCSUG196) (see below) :
+
+    - Access your VM instance's bash terminal (for additional help refer to [Access VM Instances Running in Open Stack](http://support.cades.ornl.gov/user-documentation/_book/openstack/access-vm/access-vm-ssh-windows.html)).
+
+    - Then, find out the name of the new volume:
+
+        ```bash
+        $ lsblk
+        ```
+      - You should see something like:
+
+        ```bash
+        # NAME   MAJ:MIN RM SIZE RO TYPE MOUNTPOINT
+        # vda    253:0    0   8G  0 disk
+        # └─vda1 253:1    0   8G  0 part /
+        # vdb    253:16   0  80G  0 disk
+        ```
+      - In our case, *vdb* is the volume we want to mount. In the bash type the following:
+
+        ```bash
+        $ sudo fdisk /dev/vdb
+        ```
+
+      - In the prompts do the following to set the correct flags:
+
+        * type: *c* and hit *enter*
+        * type: *u* and hit *enter*
+        * type: *w* and hit *enter*
+        </br>
+        </br>
+      - Next, find out what file system is being used on the boot drive, let’s use the same:
+
+        ```bash
+        $ mount | grep "\^/dev"
+        ```
+      - This should show you something like:
+
+        ```bash
+        # /dev/vda1 on / type ext4 (rw,relatime,data=ordered)
+        ```
+      - Make the file system on the new volume:
+
+        ```bash
+        $ sudo mkfs -t ext4 /dev/vdb
+        ```
+      - If asked to overwrite the partition table, type: *y* then hit *enter*.
+
+      - Make a new folder. This is where the data will be stored.
+
+        ```bash
+        $ cd \~
+        $ mdkir data
+        ```
+      - Finally, mount the volume.
+
+        ```bash
+        $ sudo mount /dev/vdb /home/cades/data
+        ```
+
+      - You should see two lines now:
+
+        ```bash
+        # /dev/vda1 on / type ext4 (rw,relatime,data=ordered)
+        # /dev/vdb on /home/cades/data type ext4 (rw,relatime,data=ordered)
+        ```
+      - Verify that the mounting was done correctly:
+
+        ```bash
+        $ lsblk
+        ```
+      - You should see something like:
+
+        ```bash
+        # NAME MAJ:MIN RM SIZE RO TYPE MOUNTPOINT
+        # vda 253:0 0 8G 0 disk
+        # └─vda1 253:1 0 8G 0 part /
+        # vdb 253:16 0 80G 0 disk /home/cades/data
+        ```
+    - Check to see that data is indeed on the new volume:
+
+        ```bash
+        $ df anaconda/
+        ```
+    - You should see something like:
+
+        ```bash
+        # Filesystem 1K-blocks Used Available Use% Mounted on
+        # /dev/vda1 8065444 5962536 2086524 75% /
+        ```
+      - This indicates that anaconda is on the boot drive (_/dev/vda1_). Let's do the same for the newly mounted volume at _/data/_:
+
+        ```bash
+        $ df data/
+        ```
+      - You should see something like:
+
+        ```bash
+        # Filesystem 1K-blocks Used Available Use% Mounted on
+        # /dev/vdb 82438832 57088 78171056 1% /home/cades/data
+        ```
+      - Clearly, the new folder data is actually on the new volume */dev/vdb*
+  while the other folder anaconda was on the boot drive */dev/vda1*.
+
+    - Move any data from your fixed sized boot volume to the new volume.
+
+        ```bash
+        $ sudo mv old/folder/on/boot/volume/\* data/
+        ```
