@@ -22,5 +22,6 @@ Self-help guides on additional topics:
 * [Adding additional storage volumes for your data](mount_drive.md)
 * [Deep learning](deep_learning_container.md)
 * [Configuring ssh shortcuts](ssh_alias.md)
+* [Interactive development on the cloud](pycharm_cades_vm.md)
 
-If you have any guides that may benefit others, please feel free to add them here.
+If you have any guides that may benefit others, please feel free to make a pull request!
