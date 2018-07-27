@@ -290,6 +290,9 @@ Connection in the Mac Terminal app:
 2.  Open Putty, load the configurations for your machine and connect. You will be presented with a new SSH connection to the VM. You can close this if you do not need it.
 3.  Open a browser and go to: <http://localhost:8889/>
 
+#### Important: Shut down your VM if you are not using it
+A virtual machine is like a public-use desktop or a laptop. It [costs](https://cloud.google.com/compute/pricing) [money](https://aws.amazon.com/ec2/pricing/on-demand/) to run VMs and reserving resources for your VM, precludes others from utilizing resources. Please be considerate.
+
 ## Step 6: Shutting down the Jupyter server:
 Once you are done working on your jupyer server, you will need to:
 *  If you used `screen` and closed your ssh connection to
