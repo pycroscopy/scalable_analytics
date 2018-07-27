@@ -7,8 +7,11 @@ Oak Ridge National Laboratory
 
 10/9/2017
 
-WHile it may be straightforward to install / configure popular analytics / visulization packages, it can be challenging to correctly install / configure deep learning frameworks like TensorFlow, MXNet etc. 
+While it may be straightforward to install / configure popular analytics / visulization packages, it can be challenging to correctly install / configure deep learning frameworks like TensorFlow, MXNet etc. 
 One could still manually install these frameworks via pip but such installation may not take full advantage of the hardware. 
+
+**Important: Shut down your VM if you are not using it.**
+A virtual machine is like a public-use desktop or a laptop. It [costs](https://cloud.google.com/compute/pricing) [money](https://aws.amazon.com/ec2/pricing/on-demand/) to run VMs and reserving resources for your VM, precludes others from utilizing resources. Please be considerate.
 
 The most popuar method for efficiently using these frameworks is by running inside a [Docker container](<https://www.docker.com/what-container>). Here are the steps that need to be followed to easily and efficiently get started with deep learning:
 1. Follow the official [instructions to create a virtual machine](http://support.cades.ornl.gov/index.php/birthright-cloud/) on the CADES Birthright cloud
