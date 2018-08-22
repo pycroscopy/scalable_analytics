@@ -290,8 +290,11 @@ Connection in the Mac Terminal app:
 2.  Open Putty, load the configurations for your machine and connect. You will be presented with a new SSH connection to the VM. You can close this if you do not need it.
 3.  Open a browser and go to: <http://localhost:8889/>
 
-#### Important: Shut down your VM if you are not using it
-A virtual machine is like a public-use desktop or a laptop. It [costs](https://cloud.google.com/compute/pricing) [money](https://aws.amazon.com/ec2/pricing/on-demand/) to run VMs and reserving resources for your VM, precludes others from utilizing resources. Please be considerate.
+## Best Practices and ethical use of the cloud:
+A virtual machine is like a public-use desktop or a laptop. It [costs](https://cloud.google.com/compute/pricing) [money](https://aws.amazon.com/ec2/pricing/on-demand/) to run VMs and reserving resources for your VM, precludes others from utilizing resources. Here are a few guidelines for using and managing VMs:
+* If you are not using the VM for extended periods or are not using all the horsepower, consider resizing to a smaller flavor (fewer CPU cores and smaller RAM). Remember that you can always resize it back to something bigger whenever necessary. 
+* Additionally, you can shut down your VM, just like you would shut down your personal computer
+* Consider deleting VMs you will never use again 
 
 ## Step 6: Shutting down the Jupyter server:
 Once you are done working on your jupyer server, you will need to:
