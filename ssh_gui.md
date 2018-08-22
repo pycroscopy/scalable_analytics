@@ -26,7 +26,7 @@ The Mac `Terminal` application comes with utilities that simplify the ssh proces
 ## Port forwarding for Jupyter
 The former application does not make a particularly compelling case for setting up the GUI shortcut. 
 However, it is very handy for setting up the port forwarding to your VM (already) running a Jupyter server.
-1.  Open the `Terminal` app
+1.  Open the `Terminal` app and go to `Shell` → `New Remote Connection`
 2.  Click on the `+` icon under the right-hand column (`Server`).
 3.  Type: `-N -L localhost:8889:localhost:8889 cades@172.22.3.50`. Replace the IP address with that of your machine. Click `OK`.
   ![](media/python_analytics_server/image011.png)
