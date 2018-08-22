@@ -84,20 +84,9 @@ $ mv id_rsa.pub ~/.ssh/id_rsa.pub
 ```
 
 #### 2. *OPTIONAL*: Graphical Interface for SSH
-The Mac `Terminal` application comes with utilities that simplify the ssh process with a graphical interface. If you are comfortable with the command line and do not mind typing ssh / sftp commands you do not need to follow the following steps.
-1.  Open the `Terminal` app
-2.  Go to `Shell` → `New Remote Connection`
-3.  Click on the `+` icon under the right-hand column (`Server`).
-4.  Type the address of your instance like `cades@172.22.3.50` into the pop up window as shown in the image below
-5.  Click `OK`.
-  ![](media/python_analytics_server/image007.png)
-6.  You should see a new entry in the `Server` column.
-  ![](media/python_analytics_server/image009.png)
-7.  We need to add another entry for connecting to the Jupyter server. For this, click on the `+` icon under the right-hand column (`Server`).
-8.  Type: `-N -L localhost:8889:localhost:8889 cades@172.22.3.50`. Replace the IP address with that of your machine. Click `OK`.
-  ![](media/python_analytics_server/image011.png)
-9.  The first entry allows you to connect to your remote machine whereas the second (longer line) allows you to connect to your soon-to-be active jupyter server.
-10.  You can use the same entries for other services such as  `Secure File Transfer (sftp)`.
+The Mac `Terminal` application comes with utilities that simplify the ssh process with a graphical interface. If you are comfortable with the command line and do not mind typing `ssh` / `sftp` commands you can skip this step. 
+
+If you are interested in this quick setup, follow the instructions [here](./ssh_gui). Please only set up the entries and do not follow any steps including and following those that expect you to click on the `Connect` button. We will get to this in `Step 4` below
 
 #### 3. Connecting to the instance
 * Via the command line interface on the Terminal app:
