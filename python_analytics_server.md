@@ -129,7 +129,7 @@ ssh jupyterVM
 ##### Graphical interface for SSH:
 The Mac `Terminal` application comes with utilities that simplify the ssh process with a graphical interface. If you are comfortable with the command line and do not mind typing `ssh` / `sftp` commands you can skip this step. 
 
-If you are interested in this quick setup, follow the instructions [here](./ssh_gui). Please only set up the entries and do not follow any steps including and following those that expect you to click on the `Connect` button. We will get to this in `Step 4` below
+If you are interested in this quick setup, follow the instructions [here](./mac_ssh_gui.md). Please only follow instructions till step 6 (set up the entries and do not follow any steps including and following those that expect you to click on the `Connect` button. We will get to this in `Step 4` below)
 
 #### 3. Connecting to the instance
 * Via the command line interface on the Terminal app:
