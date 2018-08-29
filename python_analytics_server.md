@@ -7,6 +7,27 @@ Oak Ridge National Laboratory
 
 10/9/2017
 
+## Table of contents:
+- [Introduction](#introduction)
+	- [Support](#support)
+	- [Best practices](#best-practices-and-ethical-use-of-the-cloud)
+	- [Other notes](#other-notes)
+0. [Getting a CADES Birthright account](#step-0-getting-a-cades-birthright-account)
+1. [Creating and Launching an instance](#step-1-creating-and-launching-an-instance)
+2. [Accessing the Instance](#step-2-accessing-the-instance)
+	- Everyone - Get the IP address
+	- Everyone - Get the public key
+	- [ORNL Mac / Linux computers only](#1-ornl-mac--linux-computer)
+	- [ORNL Windows computers only](#2-ornl-windows-computer)
+	- [Personal computers](#3-from-your-personal-computer)
+3. [Installing analytics packages on the instance](#step-3-installing-analytics-packages-on-the-instance)
+4. [Starting the Jupyter server](#step-4-starting-a-jupyter-server)
+5. [Accessing the Jupyter server](#step-5-accessing-the-jupyter-server)
+	- [Mac / Linux](#mac--linux)
+	- [Windows](#windows)
+	- [Personal computers](#personal-computer)
+6. [Shutting down the Jupyter server](#step-6-shutting-down-the-jupyter-server)
+
 ## Introduction:
 -   R and python are two of the most popular languages for analyzing scientific data. However, it can be challenging for first-time users to set up these familiar languages on cloud computing resources for data analytics.
 -   These self-service instructions will guide you through the process of creating a `virtual machine` (VM) on the [CADES Cloud](https://cades.ornl.gov/service-suite/cades-cloud/) cloud (comparable to a powerful desktop computer and scalable) that you could use instead of your personal computer for data analysis via a [Jupyter](http://jupyter.org) notebook [server](https://www.youtube.com/watch?v=HW29067qVWk).
@@ -15,6 +36,12 @@ Oak Ridge National Laboratory
 ### Support:
 -   CADES provides the ability and support to create and use virtual machines. Users are free to use such VMs for a variety of purposes, such as running a Jupyter notebook server. **Users are responsible for maintaining the software installed on their own VMs** (e.g. - python packages, Jupyter server, etc.).
 -   Please follow all steps in this guide to ensure a smooth setup of your analytics VM. For questions regarding the virtual machine itself (steps 0-2), please [contact CADES support](cades-help@ornl.gov). If you have any questions regarding the setup of anaconda, Jupyter, etc. (steps 3-6) please feel free to [contact me](somnaths@ornl.gov).
+
+### Best Practices and ethical use of the cloud:
+A virtual machine is like a public-use desktop or a laptop. It [costs](https://cloud.google.com/compute/pricing) [money](https://aws.amazon.com/ec2/pricing/on-demand/) to run VMs and reserving resources for your VM, precludes others from utilizing resources. Here are a few guidelines for using and managing VMs:
+* If you are not using the VM for extended periods or are not using all the horsepower, consider resizing to a smaller flavor (fewer CPU cores and smaller RAM). Remember that you can always resize it back to something bigger whenever necessary. 
+* Additionally, you can shut down your VM, just like you would shut down your personal computer
+* Consider deleting VMs you will never use again 
 
 ### Other notes:
 -   The remote machine runs the [Ubuntu](https://www.ubuntu.com/desktop) (Linux) operating system. You are recommended to take this [short tutorial](https://www.udacity.com/course/linux-command-line-basics--ud595) if you are new to Linux and/or the [command line interface](https://help.ubuntu.com/community/UsingTheTerminal).
@@ -256,11 +283,10 @@ Connection in the Mac Terminal app:
 2.  Open Putty, load the configurations for your machine and connect. You will be presented with a new SSH connection to the VM. You can close this if you do not need it.
 3.  Open a browser (Chrome recommended for interactive widgets) and go to: <http://localhost:8889/>
 
-## Best Practices and ethical use of the cloud:
-A virtual machine is like a public-use desktop or a laptop. It [costs](https://cloud.google.com/compute/pricing) [money](https://aws.amazon.com/ec2/pricing/on-demand/) to run VMs and reserving resources for your VM, precludes others from utilizing resources. Here are a few guidelines for using and managing VMs:
-* If you are not using the VM for extended periods or are not using all the horsepower, consider resizing to a smaller flavor (fewer CPU cores and smaller RAM). Remember that you can always resize it back to something bigger whenever necessary. 
-* Additionally, you can shut down your VM, just like you would shut down your personal computer
-* Consider deleting VMs you will never use again 
+### Personal computer:
+1. Log in via the [citrix page](https://gocitrix.ornl.gov/)
+2. Select the `PuTTY` application 
+3. Follow the same instructions for Windows computers.
 
 ## Step 6: Shutting down the Jupyter server:
 Once you are done working on your jupyer server, you will need to:
