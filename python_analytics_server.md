@@ -34,7 +34,7 @@ Oak Ridge National Laboratory
 You can follow the four steps in CADES’ documentation in the links below but pay attention to my notes:
 
 1. `Log in to Horizon, name your VM` - follow the instructions on [this page](http://support.cades.ornl.gov/user-documentation/_book/openstack/create-vm/launch-vm-start.html) as is.
-2. `Choose a flavor, image, and boot source` - follow [instructions here](http://support.cades.ornl.gov/user-documentation/_book/openstack/create-vm/launch-vm-configure.html) but pay attention to 2 things:
+2. `Choose a flavor, image, and boot source` - follow [instructions here](http://support.cades.ornl.gov/user-documentation/_book/openstack/create-vm/launch-vm-configure.html) but pay attention to a few things:
 	1. At the ``Source Tab``: 
 	![](media/python_analytics_server/image002.png)
 		1. ``Delete Volume on Instance Delete``: Set to No if you want to drive to be kept alive even though the instance is deleted. This is generally a good idea - you can always delete the volume (in addition to the instance) if you don't need it.
@@ -87,7 +87,19 @@ $ mv id_rsa ~/.ssh/id_rsa
 $ mv id_rsa.pub ~/.ssh/id_rsa.pub
 ```
 
-#### 2. *OPTIONAL*: Graphical Interface for SSH
+#### 2. *OPTIONAL*: Shortcuts!
+
+##### Aliases:
+You can [set up aliases](https://github.com/pycroscopy/cades_birthright/blob/master/ssh_alias.md) that make it easier to refer to your remote machine. Aliases can turn commands like:
+```bash
+ssh cades@172.22.3.50
+```
+to:
+```bash
+ssh jupyterVM
+```
+
+##### Graphical interface for SSH:
 The Mac `Terminal` application comes with utilities that simplify the ssh process with a graphical interface. If you are comfortable with the command line and do not mind typing `ssh` / `sftp` commands you can skip this step. 
 
 If you are interested in this quick setup, follow the instructions [here](./ssh_gui). Please only set up the entries and do not follow any steps including and following those that expect you to click on the `Connect` button. We will get to this in `Step 4` below
@@ -110,12 +122,13 @@ Before you begin: These instructions are for **ORNL computers only**. Instructio
 If you don’t have PuTTY installed, install it via the following links:
 * [64 bit](https://the.earth.li/~sgtatham/putty/latest/w64/putty.exe) (most computers)
 * [32 bit](https://the.earth.li/~sgtatham/putty/latest/w32/putty.exe) (rare situations)
-2. Configure PuTTY to connect to your instance:
+3. *OPTIONAL but Recommended*: If you are interested in accessing your instance from your personal computer, you are recommended to make a copy of your public and private keys and place the copies some place on ``ORNLDATA``. 
+4. Configure PuTTY to connect to your instance:
 	- Go to [CADES' instructions](http://support.cades.ornl.gov/user-documentation/_book/openstack/access-vm/access-vm-ssh-windows.html#connect-to-your-vm-instance-using-putty) 
 	- Follow instructions starting from `Connect to Your VM Instance Using PuTTY` but **before clicking on the Open button to connect to your VM**, follow the step below
 	- Type a name like `JupyterVM` and click on the Save button so that you don’t need to perform the setup procedure repeatedly. This name need not match the name on Horizon.
 	  ![](media/python_analytics_server/image025.png)
-3. Configure the tunneling to connect to the Jupyter notebook server by following the [instructions here](https://github.com/pycroscopy/cades_birthright/blob/master/tunnelling_remote_server.md#win-setup)
+5. Configure the tunneling to connect to the Jupyter notebook server by following the [instructions here](https://github.com/pycroscopy/cades_birthright/blob/master/tunnelling_remote_server.md#win-setup)
 
 ### 3. From your personal computer:
 1. Log in via the [citrix page](https://gocitrix.ornl.gov/)
@@ -227,26 +240,21 @@ If you don’t have PuTTY installed, install it via the following links:
 
 ### Mac / Linux:
 Connection in the Mac Terminal app:
-1.  Open the Terminal
+1. Open the Terminal
 2. Depending on which method you prefer (and have set up):
-    1. Command line interface:
+    - Command line interface:
       ```bash
       $ ssh -N -L localhost:8889:localhost:8889 cades@172.22.3.50
       ```
 
-    2.  Graphical Interface:
-        1. Go to Shell → New Remote Connection
-        2.  To connect to your Jupyter server, ensure that `Secure Shell (ssh)` is
-            selected on the left-hand side column, then select the second entry
-            you made (`-N -L localhost:8889:localhost:8889 cades@172.22.3.50` in
-            my case), and click on the `Connect` button in the bottom right.
-            ![](media/python_analytics_server/image035.png)
-3.  Open a browser and go to: <http://localhost:8889/>
+    - Graphical Interface: see [this document](./tunnelling_remote_server.md#mac-access) again
+
+3. Open a browser (Chrome recommended for interactive widgets) and go to: <http://localhost:8889/>
 
 ### Windows:
 1.  Close any open Putty connections to the VM
 2.  Open Putty, load the configurations for your machine and connect. You will be presented with a new SSH connection to the VM. You can close this if you do not need it.
-3.  Open a browser and go to: <http://localhost:8889/>
+3.  Open a browser (Chrome recommended for interactive widgets) and go to: <http://localhost:8889/>
 
 ## Best Practices and ethical use of the cloud:
 A virtual machine is like a public-use desktop or a laptop. It [costs](https://cloud.google.com/compute/pricing) [money](https://aws.amazon.com/ec2/pricing/on-demand/) to run VMs and reserving resources for your VM, precludes others from utilizing resources. Here are a few guidelines for using and managing VMs:
