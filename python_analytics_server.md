@@ -8,50 +8,52 @@ Oak Ridge National Laboratory
 10/9/2017
 
 ## Introduction:
--   In this era of exploding data sizes and computationally expensive data analysis algorithms, analyzing data on your personal computer is likely to be infeasible. It is equally infeasible to expect each researcher to purchase powerful computers for their own research since such computers can quickly become prohibitively expensive to procure and maintain. [Cloud](http://support.cades.ornl.gov/index.php/birthright-cloud/), [cluster](http://support.cades.ornl.gov/index.php/shpc-condos/), and [leadership (supercomputers)](https://www.olcf.ornl.gov/computing-resources/) computing resources are ideally suited for such problems.
--   R and python are two of the most popular languages for analyzing scientific data. However, it can be challenging to set up these familiar languages on the aforementioned cloud computing resources for data analytics.
--   These self-service instructions will guide you through the process of creating a `virtual machine` (VM) on the [CADES Birthright](http://support.cades.ornl.gov/index.php/birthright-cloud/) cloud (comparable to a powerful desktop computer and scalable) that you could use instead of your personal computer for data analysis via a [Jupyter](http://jupyter.org) notebook [server](https://www.youtube.com/watch?v=HW29067qVWk).
+-   R and python are two of the most popular languages for analyzing scientific data. However, it can be challenging for first-time users to set up these familiar languages on cloud computing resources for data analytics.
+-   These self-service instructions will guide you through the process of creating a `virtual machine` (VM) on the [CADES Cloud](https://cades.ornl.gov/service-suite/cades-cloud/) cloud (comparable to a powerful desktop computer and scalable) that you could use instead of your personal computer for data analysis via a [Jupyter](http://jupyter.org) notebook [server](https://www.youtube.com/watch?v=HW29067qVWk).
 -   The entire setup process (besides step 0) should take about 20 minutes. Once set up, connecting to the notebook server should only take a few button clicks.
 
 ### Support:
--   CADES provides the ability and support to create and use virtual machines. Users are free to use such VMs for a variety of purposes, such as running a Jupyter notebook server. Users are responsible for maintaining the software installed on their own VMs (e.g. - python packages, Jupyter server, etc.).
--   Please follow all steps in this guide to ensure a smooth setup of your analytics VM. For questions regarding the virtual machine itself (steps 0-2), please contact CADES support at <cades-help@ornl.gov>. If you have any questions regarding the setup of anaconda, Jupyter, etc. (steps 3-6) please feel free to contact me at <somnaths@ornl.gov>.
+-   CADES provides the ability and support to create and use virtual machines. Users are free to use such VMs for a variety of purposes, such as running a Jupyter notebook server. **Users are responsible for maintaining the software installed on their own VMs** (e.g. - python packages, Jupyter server, etc.).
+-   Please follow all steps in this guide to ensure a smooth setup of your analytics VM. For questions regarding the virtual machine itself (steps 0-2), please [contact CADES support](cades-help@ornl.gov). If you have any questions regarding the setup of anaconda, Jupyter, etc. (steps 3-6) please feel free to [contact me](somnaths@ornl.gov).
 
 ### Other notes:
 -   The remote machine runs the [Ubuntu](https://www.ubuntu.com/desktop) (Linux) operating system. You are recommended to take this [short tutorial](https://www.udacity.com/course/linux-command-line-basics--ud595) if you are new to Linux and/or the [command line interface](https://help.ubuntu.com/community/UsingTheTerminal).
+- CADES has several helpful guides on [learning the basics of Linux](http://support.cades.ornl.gov/user-documentation/_book/linux/linux-intro.html) as well.
 -   This document is limited to the instructions necessary for setting up a virtual machine for data analytics using python and is not intended to serve as a comprehensive manual for maintaining and administering your virtual Linux machine or implementing other advanced analytics features such as [JupyterHub](https://github.com/jupyterhub/jupyterhub). Please refer to other online resources for such topics.
--   Though you can set up a [VM for analytics using R](http://support.cades.ornl.gov/user-documentation/_book/openstack/user-tutorials/shiny/shiny.html), this is *NOT* extendable to Matlab and similar proprietary / paid software packages.
+-   Though you can set up a [VM for analytics using R](http://support.cades.ornl.gov/user-documentation/_book/openstack/user-tutorials/shiny/shiny.html), this is **NOT extendable to Matlab** and similar proprietary / paid software packages.
 -   This virtual machine will be only be accessible within the ORNL network. You would need to use the VPN on an ORNL laptop when off campus or access the machine via Citrix on your personal computer.
 -   Many thanks to the Chris Layton, Pete Eby, Ketan Maheshwari from CADES and Ondrej Dyck from CNMS.
 
 ## Step 0: Getting a CADES Birthright account:
-1.  You will need to request for access to the CADES Birthright Cloud from the following the [instructions here](http://support.cades.ornl.gov/index.php/birthright-cloud/). You should receive a mail within a few minutes to 1-2 hours regarding the approval of your request.
-2.  *OPTIONAL*: By default, everyone has access to virtual machines that have up to 8 GB of memory and 16 CPU cores. If you need more, you can request to have your quotas increased by sending an email to CADES <cades-help@ornl.gov> including details such as your three character `UCAMS id`, justification, and duration for the increase in quota in the email.
-3.  *OPTIONAL*: Consider joining the `#ornl_cloud` channel on the CADES SLACK group (<cades@slack.com)> to communicate with other users of the CADES cloud.
+1.  You will need to request for access to the CADES Birthright Cloud from the following the [instructions here](http://support.cades.ornl.gov/user-documentation/_book/openstack/start/request-cloud-allocation.html). You should receive a mail within a few minutes to 1-2 hours regarding the approval of your request.
+2.  *OPTIONAL*: By default, everyone has access to virtual machines that have up to 8 GB of memory and 16 CPU cores. If you need more, you can request to have your quotas increased by [sending an email to CADES](cades-help@ornl.gov) including details such as your three character `UCAMS id`, justification, and duration for the increase in quota in the email.
+3.  *OPTIONAL*: Consider joining the `#ornl_cloud` channel on the [CADES SLACK group](cades@slack.com) to communicate with other users of the CADES cloud.
 
 ## Step 1: Creating and Launching an instance:
 
-You can follow CADES’ documentation in the link below but before you do please read:
+You can follow the four steps in CADES’ documentation in the links below but pay attention to my notes:
 
-1.  In `step 4` of `Launch an Instance`:
-    1. `Volume Size`: This is the size of the storage drive that will contain the operating system, data, python packages etc. Though the analytics server would still work with the minimum 8 GB volume that is used in the below instructions document, you are recommended to set this to 16 GB or larger. If you intend to use your birthright account exclusively for this analytics server, you can use up your entire quota (eg. 40 GB). Like any personal computer, you can always add volumes to your instance but starting off with a large enough volume can mitigate additional work. Please refer to the additional topics section at the end of this document if you already created an instance but need to add a new storage volume.
-    2.  `Image` – choose `Ubuntu` as they do in the tutorial
-      ![](media/python_analytics_server/image002.png)
-
-2.  In `step 5` of `Launch an Instance`:
-    1.  `Flavor`: This mainly determines the number of processor cores and memory. You CAN change the flavor after creating the instance so do not worry about this step very much. Pick the flavor that best suits your applications:
-      - Pick any flavor that begins with `m1.` if you do a lot of statistical analysis that requires a large RAM compared to the number of CPU cores
-      - Pick any flavor beginning with `c1.` if you tend to run a lot of small computations in parallel.
-      - For additional flavors request CADES to increase your quota. See Step 0.
-      - You can always run multiple machines in parallel. So you could distribute your memory / CPUs among two machines that fully utilize your quota.  
-
-Follow [CADES’ instructions](http://support.cades.ornl.gov/user-documentation/_book/openstack/launch-vm.html) to set up your own virtual machine.
+1. `Log in to Horizon, name your VM` - follow the instructions on [this page](http://support.cades.ornl.gov/user-documentation/_book/openstack/create-vm/launch-vm-start.html) as is.
+2. `Choose a flavor, image, and boot source` - follow [instructions here](http://support.cades.ornl.gov/user-documentation/_book/openstack/create-vm/launch-vm-configure.html) but pay attention to 2 things:
+	1. At the ``Source Tab``: 
+	![](media/python_analytics_server/image002.png)
+		1. ``Delete Volume on Instance Delete``: Set to No if you want to drive to be kept alive even though the instance is deleted. This is generally a good idea - you can always delete the volume (in addition to the instance) if you don't need it.
+		2. ``Volume Size``: This is the size of the storage drive that will contain the operating system, data, python packages etc. You are recommended to set this to `16 GB` or larger. If you intend to use your birthright account exclusively for this analytics server, you can use up your entire quota (eg. 40 GB). Like any personal computer, you can always add volumes to your instance but starting off with a large enough volume can mitigate additional work. Please [see this document](https://github.com/pycroscopy/cades_birthright/blob/master/mount_drive.md) if you already created an instance but need to add a new storage volume.
+	2. At the ``Flavor Tab``: This mainly determines the number of processor cores and memory. **You can change the flavor after creating the instance** so do not worry about this step very much. Pick the flavor that best suits your applications:
+	      - Pick any flavor that begins with `m1.` if you do a lot of statistical analysis that requires a large RAM compared to the number of CPU cores
+	      - Pick any flavor beginning with `c1.` if you tend to run a lot of small computations in parallel.
+	      - For additional flavors request CADES to increase your quota. See Step 0.
+	      - You can always run multiple machines in parallel. So you could distribute your memory / CPUs among two machines that fully utilize your quota.
+3. [Set up a security group](http://support.cades.ornl.gov/user-documentation/_book/openstack/create-vm/launch-vm-security.html) as it says in the document
+4. [Configure a key pair for accessing the VM](http://support.cades.ornl.gov/user-documentation/_book/openstack/create-vm/launch-vm-keys.html) as it says in the document
 
 ## Step 2: Accessing the Instance:
 
-The instructions below are an adaptation of the official CADES documentation:
-* For [Mac / Linux](http://support.cades.ornl.gov/user-documentation/_book/openstack/access-vm-ssh.html)
-* For [Windows](http://support.cades.ornl.gov/user-documentation/_book/openstack/access-vm-ssh-windows.html)
+The instructions below are a simplification of the official CADES documentation:
+* For [Mac / Linux](http://support.cades.ornl.gov/user-documentation/_book/openstack/access-vm/access-vm-ssh.html)
+* For [Windows](http://support.cades.ornl.gov/user-documentation/_book/openstack/access-vm/access-vm-ssh-windows.html)
+
+**The instructions below are only for ORNL computers and will NOT work on personal computers**. It is indeed possible to access this VM from personal computers. Those instructions can be found at the end of this section.
 
 #### 1. Find the IP address of your machine.
 1.  While in the `Horizon` interface you used for creating the instance to your VM, Click on the `Compute` tab, then the `Instances` sub-tab
@@ -62,9 +64,9 @@ The instructions below are an adaptation of the official CADES documentation:
 1.  Click on the `Access and Security` tab and then navigate to `Key Pairs`.
     ![](media/python_analytics_server/image003.png)
 2.  Click on the key. In this case – CADESBirthrightKey
-3.  Copy the contents of `Public Key` and paste into a text editor like `TextEdit` in Mac or `Notepad` in Mac.
+3.  Copy the contents of `Public Key` and paste into a text editor like `TextEdit` on MacOS or `Notepad` in Windows. **Read the next step before saving**:
     ![](media/python_analytics_server/image005.png)
-4.  Before saving, make sure to change the format to plain text. This is especially true of `TextEdit` in Mac or `Wordpad` in Windows for example.
+4.  Before saving, make sure to change the format to `plain text`. This is especially true of `TextEdit` in Mac (in the Menu bar - Go to `Format` -> `Make Plain Text`) `Wordpad` (when saving, select `Text Document (.txt)` instead of the default `Rich text` in the pull down menu) in Windows for example.
 5.  Save the file as `id_rsa.pub`
 
 From here on follow instructions specific to your operating system:
@@ -72,11 +74,13 @@ From here on follow instructions specific to your operating system:
 ### Mac / Linux:
 
 #### 1. Moving the keys:
-1.  Rename your private key from the original name (for example - CADESBirthrightKey) via:
+1. *OPTIONAL but Recommended*: If you are interested in accessing your instance from your personal computer, you are recommended to make a copy of your public and private keys and place the copies someplace on ``ORNLDATA`` (e.g. - My Documents). 
+2.  Open the ``Terminal`` application and navigate to the directory where you stored your private key. 
+3. Rename your private key from the original name (for example - CADESBirthrightKey) by typing:
 ```bash
 $ mv CADESBirthrightKey id_rsa
 ```
-2.  Move the private and public keys to `~/.ssh/`. For example, if you stored both the private and public keys in Documents.
+4.  Move the private and public keys to `~/.ssh/`. For example, if you stored both the private and public keys in Documents.
 ```bash
 $ cd Documents
 $ mv id_rsa ~/.ssh/id_rsa
@@ -142,20 +146,29 @@ If you don’t have PuTTY installed, install it via the following links:
   3. Click on the `Add` button. You should see the following under `Forwarded ports`:
   ![](media/python_analytics_server/image029.png)
 
-3.  Go back to Session. Highlight the name of the configuration `PycroscopyVM`. and click on the `Save` button.
+3.  Go back to Session. Highlight the name of the configuration `JupyterVM`. and click on the `Save` button.
   ![](media/python_analytics_server/image031.png)
 4.  You can verify that the tunneling settings have been saved by:
-    1.  Closing Putty,
+    1. Closing Putty,
     2. Reopening Putty,
-    3. Loading the configuration PycroscopyVM
+    3. Loading the configuration `JupyterVM`
     4. Navigating to `SSH` → `Tunnels`
-    5.  The line containing the port forwarding should still be there.
+    5. The line containing the port forwarding should still be there.
     6. If it is not, re-do the appropriate steps above.
 
 #### 5.  Connect to the instance:
 1.  After loading the appropriate session created in the preceding steps, click `Open` to connect to your VM Instance using SSH.
 2.  If and when prompted, choose to cache the server's fingerprint (click `Yes`).
 ![](media/python_analytics_server/image033.png)
+
+### Accessing your VM in different ways:
+Accessing you instance in a variety of circumstances:
+1. Within the ORNL network and from an ORNL computer: Follow the instructions above
+2. Outside the ORNL network but from an ORNL computer: You will need to connect to the ORNL VPN using your PIN and RSA token after which you can access your VM as you would if you were within the ORNL network
+3. From a personal computer - 
+	1. Log in via the [citrix page](https://gocitrix.ornl.gov/)
+	2. Select the `PuTTy` application
+	3. Follow the instructions above for Windows computers.
 
 ## Step 3: Installing analytics packages on the instance:
 1. Download [Anaconda](https://www.anaconda.com/download/) 4.2 -&gt; python 3.5. You can download a different version if you wish.
