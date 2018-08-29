@@ -140,11 +140,11 @@ If you don’t have PuTTY installed, install it via the following links:
 	- In Citrix, select the `ORNL General Desktop` application and use the `PuTTY` application to access your VM. This may be slow (bandwidth wasted on transporting the bits of the Windows machine) and tedious (you cannot forward the Jupyter notebook server to your personal computer - it would stay within the virtual Windows machine)
 	 
 ## Step 3: Installing analytics packages on the instance:
-1. Download [Anaconda](https://www.anaconda.com/download/) 4.2 -&gt; python 3.5. You can download a different version if you wish.
+1. Download [Anaconda](https://www.anaconda.com/download/) 5.2 -&gt; python 3.6. You can download a different version if you wish.
 
   ```bash
   $ mkdir temp
-  $ curl https://repo.continuum.io/archive/Anaconda3-4.2.0-Linux-x86_64.sh > temp/Anaconda3-4.2.0-Linux-x86_64.sh
+  $ curl https://repo.continuum.io/archive/Anaconda3-5.2.0-Linux-x86_64.sh > temp/Anaconda3-4.2.0-Linux-x86_64.sh
   ```
 
 2. Change privileges before installing Anaconda
