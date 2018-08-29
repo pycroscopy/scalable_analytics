@@ -104,62 +104,14 @@ ssh cades@172.22.3.50
 
 ### Windows:
 
-#### 1. Install Putty
+1. Install Putty
 If you don’t have PuTTY installed, install it via the following links:
 * [64 bit](https://the.earth.li/~sgtatham/putty/latest/w64/putty.exe) (most computers)
 * [32 bit](https://the.earth.li/~sgtatham/putty/latest/w32/putty.exe) (rare situations)
-
-#### 2.  Convert your private key to PuTTY Format:
-1.  Locate and execute `PuTTYGen.exe`.
-2.  Click the `Load` button.
-  ![](media/python_analytics_server/image013.png)
-3.  In the resulting dialog, navigate to the location of your key file.
-4.  Select `All Files (*.*)` to show .pem files in the dialog.
-5.  Select the appropriate key file and click `Open`.
-  ![](media/python_analytics_server/image015.png)
-6.  When prompted by the success message, click `OK`.
-  ![](media/python_analytics_server/image017.png)
-7.  Save the loaded key by clicking `Save private key`.
-  ![](media/python_analytics_server/image019.png)
-8.  Using the resulting dialog, save the key in an intuitive place (e.g., `C:\Users\Username\SSH`).
-9.  Place your private, ppk, and public keys in the above folder.
-
-#### 3.  Configure PuTTY to connect to your instance
-1.  Locate and execute `PuTTY.exe`. 
-2.  In PuTTY's navigation pane, go to `Connection` → `SSH` → `Auth`.
-3.  In the `Options for controlling SSH authentication` screen, click `Browse`.
-  ![](media/python_analytics_server/image021.png)
-4.  In the resulting dialog, find your .ppk file, and click `Open`.
-  ![](media/python_analytics_server/image023.png)
-5.  In PuTTY's navigation pane, click Session.
-6.  In the Host Name (or IP address) field, enter the IP address of your VM Instance preceded by `cades` (e.g., `cades@172.22.3.50`). 
-7.  Ensure that the `SSH` radio button is selected and the `port` is set to 22.
-8.  Type a name like JupyterVM and click on the `Save` button so that you don’t need to perform the setup procedure repeatedly. This name need not match the name on Horizon.
-  ![](media/python_analytics_server/image025.png)
-
-#### 4.  Configure the tunneling to connect to the Jupyter notebook server:
-1.  Go to `SSH` → `Tunnels`
-2.  Set the following:
-  1. `Source port`: `8889`
-  2. `Destination`: `127.0.0.1:8889`
-    ![](media/python_analytics_server/image027.pn)
-  3. Click on the `Add` button. You should see the following under `Forwarded ports`:
-  ![](media/python_analytics_server/image029.png)
-
-3.  Go back to Session. Highlight the name of the configuration `JupyterVM`. and click on the `Save` button.
-  ![](media/python_analytics_server/image031.png)
-4.  You can verify that the tunneling settings have been saved by:
-    1. Closing Putty,
-    2. Reopening Putty,
-    3. Loading the configuration `JupyterVM`
-    4. Navigating to `SSH` → `Tunnels`
-    5. The line containing the port forwarding should still be there.
-    6. If it is not, re-do the appropriate steps above.
-
-#### 5.  Connect to the instance:
-1.  After loading the appropriate session created in the preceding steps, click `Open` to connect to your VM Instance using SSH.
-2.  If and when prompted, choose to cache the server's fingerprint (click `Yes`).
-![](media/python_analytics_server/image033.png)
+2. Follow [CADES' instructions](http://support.cades.ornl.gov/user-documentation/_book/openstack/access-vm/access-vm-ssh-windows.html#connect-to-your-vm-instance-using-putty) starting from `Connect to Your VM Instance Using PuTTY` but **before clicking on the Open button to connect to your VM**:
+	- Type a name like `JupyterVM` and click on the Save button so that you don’t need to perform the setup procedure repeatedly. This name need not match the name on Horizon.
+	  ![](media/python_analytics_server/image025.png)
+3. Configure the tunneling to connect to the Jupyter notebook server by following the [instructions here](https://github.com/pycroscopy/cades_birthright/blob/master/tunnelling_remote_server.md#win-setup)
 
 ### Accessing your VM in different ways:
 Accessing you instance in a variety of circumstances:
