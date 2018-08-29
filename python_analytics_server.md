@@ -108,7 +108,9 @@ ssh cades@172.22.3.50
 If you don’t have PuTTY installed, install it via the following links:
 * [64 bit](https://the.earth.li/~sgtatham/putty/latest/w64/putty.exe) (most computers)
 * [32 bit](https://the.earth.li/~sgtatham/putty/latest/w32/putty.exe) (rare situations)
-2. Follow [CADES' instructions](http://support.cades.ornl.gov/user-documentation/_book/openstack/access-vm/access-vm-ssh-windows.html#connect-to-your-vm-instance-using-putty) starting from `Connect to Your VM Instance Using PuTTY` but **before clicking on the Open button to connect to your VM**:
+2. Configure PuTTY to connect to your instance:
+	- Go to [CADES' instructions](http://support.cades.ornl.gov/user-documentation/_book/openstack/access-vm/access-vm-ssh-windows.html#connect-to-your-vm-instance-using-putty) 
+	- Follow instructions starting from `Connect to Your VM Instance Using PuTTY` but **before clicking on the Open button to connect to your VM**, follow the step below
 	- Type a name like `JupyterVM` and click on the Save button so that you don’t need to perform the setup procedure repeatedly. This name need not match the name on Horizon.
 	  ![](media/python_analytics_server/image025.png)
 3. Configure the tunneling to connect to the Jupyter notebook server by following the [instructions here](https://github.com/pycroscopy/cades_birthright/blob/master/tunnelling_remote_server.md#win-setup)
