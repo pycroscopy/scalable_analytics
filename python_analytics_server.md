@@ -65,7 +65,7 @@ You can follow the four steps in CADES’ documentation in the links below but p
 	1. At the ``Source Tab``: 
 	![](media/python_analytics_server/image002.png)
 		1. ``Delete Volume on Instance Delete``: Set to No if you want to drive to be kept alive even though the instance is deleted. This is generally a good idea - you can always delete the volume (in addition to the instance) if you don't need it.
-		2. ``Volume Size``: This is the size of the storage drive that will contain the operating system, data, python packages etc. You are recommended to set this to `16 GB` or larger. If you intend to use your birthright account exclusively for this analytics server, you can use up your entire quota (eg. 40 GB). Like any personal computer, you can always add volumes to your instance but starting off with a large enough volume can mitigate additional work. Please [see this document](https://github.com/pycroscopy/cades_birthright/blob/master/mount_drive.md) if you already created an instance but need to add a new storage volume.
+		2. ``Volume Size``: This is the size of the storage drive that will contain the operating system, data, python packages etc. You are recommended to set this to `16 GB` or larger. If you intend to use your birthright account exclusively for this analytics server, you can use up your entire quota (eg. 40 GB). Like any personal computer, you can always add volumes to your instance but starting off with a large enough volume can mitigate additional work. Please [see this document](./mount_drive.md) if you already created an instance but need to add a new storage volume.
 	2. At the ``Flavor Tab``: This mainly determines the number of processor cores and memory. **You can change the flavor after creating the instance** so do not worry about this step very much. Pick the flavor that best suits your applications:
 	      - Pick any flavor that begins with `m1.` if you do a lot of statistical analysis that requires a large RAM compared to the number of CPU cores
 	      - Pick any flavor beginning with `c1.` if you tend to run a lot of small computations in parallel.
@@ -117,7 +117,7 @@ $ mv id_rsa.pub ~/.ssh/id_rsa.pub
 #### 2. *OPTIONAL*: Shortcuts!
 
 ##### Aliases:
-You can [set up aliases](https://github.com/pycroscopy/cades_birthright/blob/master/ssh_alias.md) that make it easier to refer to your remote machine. Aliases can turn commands like:
+You can [set up aliases](./ssh_alias.md) that make it easier to refer to your remote machine. Aliases can turn commands like:
 ```bash
 ssh cades@172.22.3.50
 ```
@@ -155,7 +155,7 @@ If you don’t have PuTTY installed, install it via the following links:
 	- Follow instructions starting from `Connect to Your VM Instance Using PuTTY` but **before clicking on the Open button to connect to your VM**, follow the step below
 	- Type a name like `JupyterVM` and click on the Save button so that you don’t need to perform the setup procedure repeatedly. This name need not match the name on Horizon.
 	  ![](media/python_analytics_server/image025.png)
-5. Configure the tunneling to connect to the Jupyter notebook server by following the [instructions here](https://github.com/pycroscopy/cades_birthright/blob/master/tunnelling_remote_server.md#win-setup)
+5. Configure the tunneling to connect to the Jupyter notebook server by following the [instructions here](./tunnelling_remote_server.md#win-setup)
 
 ### 3. From your personal computer:
 1. Log in via the [citrix page](https://gocitrix.ornl.gov/)
@@ -227,7 +227,7 @@ If you don’t have PuTTY installed, install it via the following links:
 	9. Close the editor with `Ctrl+X`
 	10. Save the file
 
-7. *OPTIONAL* - You can always install any python packages from this point on. You could install deep-learning frameworks like Keras or TensorFlow but you are recommended to use optimized Docker containers for this. Please refer to [this separate tutorial](https://github.com/pycroscopy/cades_birthright/blob/master/deep_learning_container.md) for this.
+7. *OPTIONAL* - You can always install any python packages from this point on. You could install deep-learning frameworks like Keras or TensorFlow but you are recommended to use optimized Docker containers for this. Please refer to [this separate tutorial](./deep_learning_container.md) for this.
 
 ## Step 4: Starting a Jupyter server:
 
