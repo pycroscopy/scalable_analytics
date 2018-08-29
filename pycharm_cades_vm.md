@@ -1,4 +1,4 @@
-# Running PyCharm through an ORNL CADES Birthright Cloud virtual machine using X-forwarding
+# Running PyCharm on a virtual machine using X-forwarding
 
 **Samuel Williams**<br>
 Scanning Probe Microscopy<br>
@@ -53,6 +53,6 @@ Before running PyCharm, ensure that your X server on your local computer is runn
 
 Run PyCharm by running `pycharm-community` in your virtual machine. Wait a moment and the PyCharm splash screen should appear as a new window created by the X server. 
 
-## Configuring PyCharm to manage Pycroscopy repositories
+## Configuring PyCharm to manage repositories of interest
 
-Follow [this guide](https://github.com/pycroscopy/pycroscopy/blob/master/docs/Using%20PyCharm%20to%20manage%20repository.pdf) starting from the third page, titled "Set-Up PyCharm."
+In this example, the goal is to work on a python package on GitHub for nanoscale image analysis - [pycroscopy](https://pycroscopy.github.io/pycroscopy/about.html). Follow [this guide](https://github.com/pycroscopy/pycroscopy/blob/master/docs/Using%20PyCharm%20to%20manage%20repository.pdf) starting from the third page, titled "Set-Up PyCharm."
