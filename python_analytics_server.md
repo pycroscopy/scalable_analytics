@@ -53,8 +53,6 @@ The instructions below are a simplification of the official CADES documentation:
 * For [Mac / Linux](http://support.cades.ornl.gov/user-documentation/_book/openstack/access-vm/access-vm-ssh.html)
 * For [Windows](http://support.cades.ornl.gov/user-documentation/_book/openstack/access-vm/access-vm-ssh-windows.html)
 
-**The instructions below are only for ORNL computers and will NOT work on personal computers**. It is indeed possible to access this VM from personal computers. Those instructions can be found at the end of this section.
-
 #### 1. Find the IP address of your machine.
 1.  While in the `Horizon` interface you used for creating the instance to your VM, Click on the `Compute` tab, then the `Instances` sub-tab
 2.  Copy the `IP address` listed for your instance
@@ -71,7 +69,9 @@ The instructions below are a simplification of the official CADES documentation:
 
 From here on follow instructions specific to your operating system:
 
-### Mac / Linux:
+### 1. ORNL Mac / Linux computer:
+
+Before you begin: These instructions are for **ORNL computers only**. Instructions for personal computers will follow. If you are outside the ORNL network but working on an ORNL computer, you will need to connect to the ORNL VPN using your PIN and RSA token to get back into the network
 
 #### 1. Moving the keys:
 1. *OPTIONAL but Recommended*: If you are interested in accessing your instance from your personal computer, you are recommended to make a copy of your public and private keys and place the copies someplace on ``ORNLDATA`` (e.g. - My Documents). 
@@ -102,7 +102,9 @@ ssh cades@172.22.3.50
   2.  Go to `Shell` → `New Remote Connection`
   3.  Ensure that `Secure Shell (ssh)` is selected on the left-hand column, then select the first entry you made (`cades@172.22.3.50` in my case) in the right-hand column, and click on the `Connect` button in the bottom right.
 
-### Windows:
+### 2. ORNL Windows computer:
+
+Before you begin: These instructions are for **ORNL computers only**. Instructions for personal computers will follow. If you are outside the ORNL network but working on an ORNL computer, you will need to connect to the ORNL VPN using your PIN and RSA token to get back into the network. 
 
 1. Install Putty
 If you don’t have PuTTY installed, install it via the following links:
@@ -115,15 +117,15 @@ If you don’t have PuTTY installed, install it via the following links:
 	  ![](media/python_analytics_server/image025.png)
 3. Configure the tunneling to connect to the Jupyter notebook server by following the [instructions here](https://github.com/pycroscopy/cades_birthright/blob/master/tunnelling_remote_server.md#win-setup)
 
-### Accessing your VM in different ways:
-Accessing you instance in a variety of circumstances:
-1. Within the ORNL network and from an ORNL computer: Follow the instructions above
-2. Outside the ORNL network but from an ORNL computer: You will need to connect to the ORNL VPN using your PIN and RSA token after which you can access your VM as you would if you were within the ORNL network
-3. From a personal computer - 
-	1. Log in via the [citrix page](https://gocitrix.ornl.gov/)
-	2. Select the `PuTTy` application
-	3. Follow the instructions above for Windows computers.
-
+### 3. From your personal computer:
+1. Log in via the [citrix page](https://gocitrix.ornl.gov/)
+2. `PuTTY` setup:
+	1. Select the `ORNL General Desktop` application
+	2. Follow steps 2 and 3 in the instructions laid out for ORNL Windows computers above. 
+3. You can access your VM through at least two routes:
+	- *RECOMMENDED*:In Citrix, select the `PuTTY` application and use it as you would use an ORNL computer.
+	- In Citrix, select the `ORNL General Desktop` application and use the `PuTTY` application to access your VM. This may be slow (bandwidth wasted on transporting the bits of the Windows machine) and tedious (you cannot forward the Jupyter notebook server to your personal computer - it would stay within the virtual Windows machine)
+	 
 ## Step 3: Installing analytics packages on the instance:
 1. Download [Anaconda](https://www.anaconda.com/download/) 4.2 -&gt; python 3.5. You can download a different version if you wish.
 
