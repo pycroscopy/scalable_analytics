@@ -23,14 +23,6 @@ The Mac `Terminal` application comes with utilities that simplify the ssh proces
 7. You can now click on the ``Connect`` button to connect to your VM
 8. You can use the same entries for other services such as  `Secure File Transfer` ([sftp](./sftp.md)).
   
-## Port forwarding for Jupyter
+## Tunneling to Remote Server
 The former application does not make a particularly compelling case for setting up the GUI shortcut. 
-However, it is very handy for setting up the port forwarding to your VM (already) running a Jupyter server.
-1.  Open the `Terminal` app and go to `Shell` → `New Remote Connection`
-2.  Click on the `+` icon under the right-hand column (`Server`).
-3.  Type: `-N -L localhost:8889:localhost:8889 cades@172.22.3.50`. Replace the IP address with that of your machine. Click `OK`.
-  ![](media/python_analytics_server/image011.png)
-4. Once you start up your Jupyter server in your VM, you can click on the `Connect` button shown above to establish the connection with your jupyter server. 
-   You will be presented with a new `Terminal` window once you click on `Connect`. Closing this terminal window will cause the connection to your Jupyter server to terminate.
-   Therefore, close this terminal only when you want to close the port forwarding. 
-5. To reestablish the connection to your Jupyter server, just follow step 4.
+However, it is very handy for setting up the necessary SSH tunnels to your VM (already) running a Jupyter server. See [this page](./tunnelling_remote_server.md#mac-setup) for instructions.
