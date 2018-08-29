@@ -12,7 +12,7 @@ The guides below walk you through setting up the port-forwarding / tunnelling to
 The same instructions can be used for connecting to other remote severs such as a TensorBoard server. 
 
 ## Windows:
-### Setup
+### Win Setup
 This guide assumes that you have already followed [CADES' instructions](http://support.cades.ornl.gov/user-documentation/_book/openstack/access-vm/access-vm-ssh-windows.html#download-and-install-putty) to set up basic SSH access using `PuTTy` and have saved the configuration (For example `JupyterVM` in this example)
 1. Open `PuTTy`
 2. Under `Load, save or delete a stored session`, select your saved configuration and then click `Load`. You should see the value inside the `Host Name (or IP address)` box at the top change and reflect the address for your remote machine. 
@@ -34,7 +34,7 @@ This guide assumes that you have already followed [CADES' instructions](http://s
     4. Navigating to `SSH` → `Tunnels`
     5. The line containing the port forwarding should still be there.
     6. If it is not, re-do the appropriate steps above.
-### Access
+### Win Access
 Once you start the jupyter server correctly on your remote machine:
 1. Open `PuTTy`
 2. Select the correct configuration (`JupyterVM` in this case) 
@@ -43,12 +43,12 @@ Once you start the jupyter server correctly on your remote machine:
 5. Open a browser and go to: http://localhost:8889/
 
 ## MacOS
-### Setup
+### Mac Setup
 1.  Open the `Terminal` application and go to `Shell` → `New Remote Connection`
 2.  Click on the `+` icon under the right-hand column (`Server`).
 3.  Type: `-N -L localhost:8889:localhost:8889 cades@172.22.3.50`. Replace the IP address with that of your machine. Click `OK`.
   ![](media/python_analytics_server/image011.png)
-### Access
+### Mac Access
 Once you start the jupyter server correctly on your remote machine:
 1. Open the `Terminal` application and go to `Shell` → `New Remote Connection`
 2. Click on the correct configuration on the right-hand pane
