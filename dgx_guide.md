@@ -1,6 +1,6 @@
 # Quick guide to Nvidia DGX machines
 
-**Suhas Somnath**<br>
+**Suhas Somnath and Valentine Anantharaj**<br>
 Advanced Data and Workflows Group<br>
 National Center for Computational Sciences<br>
 Oak Ridge National Laboratory
@@ -184,3 +184,13 @@ Any modifications to files within the folder mounted via the `-v` flag when crea
 Any packages you pip install while within the container will **not** persist once you close the current container and start up a new container. Tech-savvy users are encouraged to create a Docker image over the the base package to include the missing packages, etc. Others are recommended to install additional packages / software each time the container is spun up or run a script that automates the addons.
 
 For example, you may observe that the very popular `Keras` package is not available as its own nvidia-docker image and it is not included within Nvidia's TensorFlow container. Since Keras sits on top of TensorFlow anyway, it can easily be installed via `pip install keras`. The same applies for the `jupyter` packages.
+
+## Useful links:
+Useful documentation and general information on the web
+
+* [About DGX-1](https://devblogs.nvidia.com/dgx-1-fastest-deep-learning-system/)
+* [DGX-1 Whitepaper](https://drive.google.com/open?id=1EZ8pngocznG48NTGWRc0JrPwXZ16WX7e)
+* [DGX Best Practices](https://docs.nvidia.com/deeplearning/dgx/best-practices/index.html)
+* [NVIDIA Containers and DL](https://docs.nvidia.com/deeplearning/dgx/pdf/User-Guide.pdf)
+* [Getting Started & Preparing to use NVIDIA Containers](https://docs.nvidia.com/deeplearning/dgx/preparing-containers/index.html)
+* [Tensorflow UG on DGX](https://docs.nvidia.com/deeplearning/dgx/tensorflow-user-guide/index.html)
