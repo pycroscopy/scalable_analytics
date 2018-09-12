@@ -43,11 +43,11 @@ Oak Ridge National Laboratory
 ## Tutorials
 - This repository will be used to host guides to walk people through this process. If and where appropriate, the guides will be moved to [CADES](http://support.cades.ornl.gov/user-documentation/_book/SUPPORT.html) / [OLCF](https://www.olcf.ornl.gov/for-users/getting-started/) documentation.
 - If you need help or have questions / want to report bugs or broken links, **please contact the author listed at the top of the specific tutorial page**
-- Virtual machines
-  - Start with [this guide](http://support.cades.ornl.gov/user-documentation/_book/user-contributed-tutorials/jupyter/python_analytics_server.html) to set up your own the python analytics virtual machine.
+- **Virtual machines**
+  - Start with [this guide](http://support.cades.ornl.gov/user-documentation/_book/user-contributed-tutorials/jupyter/python_analytics_server.html) to set up your own the **python analytics virtual machine**.
   - Full list of user-developed [tutorials](http://support.cades.ornl.gov/user-documentation/_book/user-contributed-tutorials/user-contributed-index.html)
   - Tutorials on the [basics of Linux](http://support.cades.ornl.gov/user-documentation/_book/linux/linux-intro.html)
-- Cluster / HPC computing
+- **Cluster / HPC computing**
   - Start [here](http://support.cades.ornl.gov/user-documentation/_book/quick-starts/condo-quick-start.html) to get started with the CADES SHPC Condo
 - [Nvidia DGX machines](./dgx_guide.md) for deep learning
 - Where did the many guides previously present here dissappear? See CADES [user-contributed documents](http://support.cades.ornl.gov/user-documentation/_book/user-contributed-tutorials/user-contributed-index.html) 
