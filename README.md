@@ -25,20 +25,20 @@ Oak Ridge National Laboratory
 - This is exactly why, I am of the opinion that simple virtual machines are the next logical step up from personal computers. The challenge (for most researchers) in transitioning from personal computers with a familiar and user-friendly graphical interface to remote computers / virtual machines actually only lies in learning how to operate and communicate with the virtual machine. Considering that clusters and supercomputers are similar in this regard, the concepts learned from using remote computers / virtual machines will be directly applicable and necessary to use clusters and supercomputers. Note that I am aware that virtual machines will not scale to the extent necessary for the desired application - this step is *purely for education and training*.
 ## The Path to supercomputing
 - I envision the path towards supercomputers as follows:
-  1. Virtual machine:
-    - The [Compute and Data Environment for Science (CADES)](https://cades.ornl.gov) has a cloud offering called [CADES Cloud](https://cades.ornl.gov/service-suite/cades-cloud/) where ORNL employees can try out Virtual machines for free via the `Birthright` allocation. Others are encouraged to use Amazon's / Google's / Microsoft's offerings.
-    - Familiarize yourself with basics of CLI
-    - Familiarize yourself with the basics of Linux
-    - Familiarize yourself with interacting with a remote computer where you need to communicate with servers and services (e.g. - Jupyter notebook server), where you cannot plug in USB drives, etc.
-    - Begin to transition yourself away from proprietary / Windows-only software to cross-platform and open-source alternatives
-    - Put together the new set of tools necessary for interacting with remote machines from your personal computer
-  2. Small cluster:
-    - CADES offers scalable cluster computing via the [CADES SHPC Open Research Condo](https://cades.ornl.gov/service-suite/scalable-hpc/) for ORNL employees. Users can use the `Birthright` allocation for development if their division doesn't already have [dedicated resources](http://support.cades.ornl.gov/user-documentation/_book/condos/how-to-use/request-access.html).
-    - Learn the basics of submitting jobs, file systems, etc.
-    - Begin scaling your analytics code to use more than one node using MPI
-  3. Leadership computing (Oak Ridge Leadership Computing Facility)
-    - Start developing code that uses GPUs via Nvidia's CUDA
-    - Scale up GPU code
+  1. **Virtual machine**:
+        - The [Compute and Data Environment for Science (CADES)](https://cades.ornl.gov) has a cloud offering called [CADES Cloud](https://cades.ornl.gov/service-suite/cades-cloud/) where ORNL employees can try out Virtual machines for free via the `Birthright` allocation. Others are encouraged to use Amazon's / Google's / Microsoft's offerings.
+        - Familiarize yourself with basics of CLI
+        - Familiarize yourself with the basics of Linux
+        - Familiarize yourself with interacting with a remote computer where you need to communicate with servers and services (e.g. - Jupyter notebook server), where you cannot plug in USB drives, etc.
+        - Begin to transition yourself away from proprietary / Windows-only software to cross-platform and open-source alternatives
+        - Put together the new set of tools necessary for interacting with remote machines from your personal computer
+  2. **Small cluster**:
+        - CADES offers scalable cluster computing via the [CADES SHPC Open Research Condo](https://cades.ornl.gov/service-suite/scalable-hpc/) for ORNL employees. Users can use the `Birthright` allocation for development if their division doesn't already have [dedicated resources](http://support.cades.ornl.gov/user-documentation/_book/condos/how-to-use/request-access.html).
+        - Learn the basics of submitting jobs, file systems, etc.
+        - Begin scaling your analytics code to use more than one node using MPI
+  3. **Leadership computing** (Oak Ridge Leadership Computing Facility)
+        - Start developing code that uses GPUs via Nvidia's CUDA
+        - Scale up GPU code
 
 ## Tutorials
 - This repository will be used to host guides to walk people through this process. If and where appropriate, the guides will be moved to [CADES](http://support.cades.ornl.gov/user-documentation/_book/SUPPORT.html) / [OLCF](https://www.olcf.ornl.gov/for-users/getting-started/) documentation.
