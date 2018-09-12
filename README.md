@@ -50,4 +50,5 @@ Oak Ridge National Laboratory
 - Cluster / HPC computing
   - Start [here](http://support.cades.ornl.gov/user-documentation/_book/quick-starts/condo-quick-start.html) to get started with the CADES SHPC Condo
 - [Nvidia DGX machines](./dgx_guide.md) for deep learning
+- Where did the many guides previously present here dissappear? See CADES [user-contributed documents](http://support.cades.ornl.gov/user-documentation/_book/user-contributed-tutorials/user-contributed-index.html) 
 - If you have any guides that may benefit others, please feel free to contact me or make a pull request!
