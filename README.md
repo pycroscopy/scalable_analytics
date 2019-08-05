@@ -1,5 +1,5 @@
 # Scaling up data analysis
-**Suhas Somnath**<br>
+**Suhas Somnath, Emily Costa**<br>
 Advanced Data and Workflows Group<br>
 National Center for Computational Sciences<br>
 Oak Ridge National Laboratory
@@ -49,6 +49,7 @@ Oak Ridge National Laboratory
   - Tutorials on the [basics of Linux](http://support.cades.ornl.gov/user-documentation/_book/linux/linux-intro.html)
 - **Cluster / HPC computing**
   - Start [here](http://support.cades.ornl.gov/user-documentation/_book/quick-starts/condo-quick-start.html) to get started with the CADES SHPC Condo
+  - Additionally, do [this](https://github.com/emilyjcosta5/scalable_analytics/blob/master/shpc_condo_tutorial.md) tutorial by running JupyterLab on the SHPC Condo.
 - [Nvidia DGX machines](./dgx_guide.md) for deep learning
 - Where did the many guides previously present here dissappear? See CADES [user-contributed documents](http://support.cades.ornl.gov/user-documentation/_book/user-contributed-tutorials/user-contributed-index.html) 
 - If you have any guides that may benefit others, please feel free to contact me or make a pull request!
