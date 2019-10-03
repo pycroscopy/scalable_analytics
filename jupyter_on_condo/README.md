@@ -112,6 +112,7 @@ several benefits over deploying on the VM:
    run this job just yet. Please wait for 30 seconds to a minute and try again.
        
 3. Follow instructions provided in ``bout.txt`` to connect to the JupyterLab server from your personal computer.
+   Note that you may need to log in with your password to the compute node in `Step 1`. 
 
 ### 2. Shutting down
 1. To shut down JupyterLab (and this job), click on ``File`` in the top menu bar in JupyterLab 
