@@ -1,16 +1,14 @@
 #!/bin/bash
-
+# This script requests a job from the scheduler to run the JupyterLab server
 # Author: Suhas Somnath
 
-module purge
-module load PE-gnu
-
-nnodes=1
-queue='testing'
-port=5959
-walltime=0:30
-account='ccsd'
-verbose=0
+# Default values for flags:
+nnodes=1 # Number of nodes: -n flag
+queue='testing' # Does not have a flag. Change if necessary
+port=5959 # Port at which JupyterLab will run: -p flag
+walltime=0:30 # How long the job will run: -t flag
+account='birthright' # Account you belong to: -A flag
+verbose=0 # Set to 1 if you want more print statements: -v flag
 
 print_usage() {
   printf "Usage: \nscript_name -A <account to charge to> <optional flags - see below>\n"
@@ -55,6 +53,7 @@ fi
 echo "Startng SLURM job requesting JupyerLab with ${nnodes} nodes for time: ${walltime}" > bout.txt
 echo "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"
 echo "type 'cat bout.txt' for instructions on connecting to the JupyterLab"
+echo "If you don't see a line with ======================== you job has not yet started. Try 'cat bout.txt' in a few seconds."
 echo "vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv"
 
 sbatch -A ${account} -p ${queue} -N ${nnodes} -n ${nnodes} -c 32 -J Jupyter --mem=32G -t ${walltime}  -o ./%x-%j.o -e ./%x-%j.e start_jlab.sh ${port} ${HOSTNAME} ${verbose}
