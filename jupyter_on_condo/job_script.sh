@@ -10,7 +10,7 @@ queue='testing'
 port=5959
 walltime=0:30
 account='ccsd'
-verbose=1
+verbose=0
 
 print_usage() {
   printf "Usage: \nscript_name -A <account to charge to> <optional flags - see below>\n"
@@ -52,6 +52,9 @@ if [[ $verbose -eq 1 ]]; then
   echo "sending: sbatch -A ${account} -p ${queue} -N ${nnodes} -n ${nnodes} -c 32 -J Jupyter --mem=32G -t ${walltime}  start_jlab.sh ${port} ${HOSTNAME} ${verbose}"
 fi
 
-echo "type 'cat Jupyter-<JOBNUMBER>.o to view the instructions"
+echo "Startng SLURM job requesting JupyerLab with ${nnodes} nodes for time: ${walltime}" > bout.txt
+echo "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"
+echo "type 'cat bout.txt' for instructions on connecting to the JupyterLab"
+echo "vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv"
 
 sbatch -A ${account} -p ${queue} -N ${nnodes} -n ${nnodes} -c 32 -J Jupyter --mem=32G -t ${walltime}  -o ./%x-%j.o -e ./%x-%j.e start_jlab.sh ${port} ${HOSTNAME} ${verbose}
