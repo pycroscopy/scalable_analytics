@@ -71,8 +71,7 @@ several benefits over deploying on the VM:
 3. Log into the Condos via:
 
    ``ssh <uid>@or-slurm-login01.ornl.gov``
-4. Download the `job_script.sh` and `start_jlab.sh` scripts in this folder onto the desired directory in 
-   Condo via the following commands:
+4. On the Condos, navigate to a desired directory and then download two scripts via the following commands:
    
    ``wget https://raw.githubusercontent.com/pycroscopy/scalable_analytics/master/jupyter_on_condo/job_script.sh``
    
