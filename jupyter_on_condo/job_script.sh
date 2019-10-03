@@ -6,7 +6,7 @@
 nnodes=1 # Number of nodes: -n flag
 queue='testing' # Does not have a flag. Change if necessary
 port=5959 # Port at which JupyterLab will run: -p flag
-walltime=0:30 # How long the job will run: -t flag
+walltime=30:00 # How long the job will run: -t flag
 account='birthright' # Account you belong to: -A flag
 verbose=0 # Set to 1 if you want more print statements: -v flag
 
