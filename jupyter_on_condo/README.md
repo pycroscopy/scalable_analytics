@@ -98,12 +98,18 @@ several benefits over deploying on the VM:
    * ``-p`` <port number>; optional; defaults to ``5959``
    * ``-t`` <wall time>; optional; defaults to 30 minutes. ``1:00`` will request 1 hour for example
    * ``-v`` = prints more statements
+   
+   You may want to set or reset the default values (e.g. the account) for the flags by editing lines ``6`` to ``11`` in ``job_script.sh``
     
 2. Read the instructions file via:
 
    ``cat bout.txt``
+   
+   This file should present a few dozen lines of instructions. 
+   If you do not see instructions on ssh etc., chances are that the scheduler has not 
+   run this job just yet. Please wait for 30 seconds to a minute and try again.
        
-3. Follow instructions to connect to the JupyterLab server
+3. Follow instructions provided in ``bout.txt`` to connect to the JupyterLab server from your personal computer.
 
 **Note:**
 
