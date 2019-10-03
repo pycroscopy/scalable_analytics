@@ -68,19 +68,26 @@ several benefits over deploying on the VM:
    to the Condos
 2. Prepare [prerequisites](https://support.cades.ornl.gov/user-documentation/_book/condos/how-to-use/prerequisites.html)
    on your personal / lab computer
-3. [Log into](https://support.cades.ornl.gov/user-documentation/_book/condos/how-to-use/access-shpc.html)
-   the Condos 
-4. *OPTIONAL*: Consider joining the `#condo` channel on the [CADES SLACK group](cades@slack.com) to 
+3. Log into the Condos via:
+
+   ``ssh <uid>@or-slurm-login01.ornl.gov``
+4. Download the `job_script.sh` and `start_jlab.sh` scripts in this folder onto the desired directory in 
+   Condo via the following commands:
+   
+   ``wget https://raw.githubusercontent.com/pycroscopy/scalable_analytics/master/jupyter_on_condo/job_script.sh``
+   
+   and
+   
+   ``wget https://raw.githubusercontent.com/pycroscopy/scalable_analytics/master/jupyter_on_condo/start_jlab.sh``
+   
+5. *OPTIONAL*: Consider joining the `#condo` channel on the [CADES SLACK group](cades@slack.com) to 
    communicate with other users of the CADES SHPC Condos.
-5. Download the `job_script.sh` and `start_jlab.sh` scripts in this folder onto the Condo
+
    
 ### 1. Running the server
-1. Log into the portion of the Condos that runs the SLURM scheduler via: ``ssh <uid>@or-slurm-login01.ornl.gov``
-2. Run the scripts as:
+1. Run the scripts as:
 
-   .. code:: bash
-
-       bash job_script.sh -A <account name that you typically pass>
+   ``bash job_script.sh -A <account name that you typically pass - e.g. - ccsd, cnms, birthright, etc.>``
 
    Additional flags you can pass to this script:
 
@@ -89,13 +96,11 @@ several benefits over deploying on the VM:
    * ``-t`` <wall time>; optional; defaults to 30 minutes. ``1:00`` will request 1 hour for example
    * ``-v`` = prints more statements
     
-3. Read the instructions file via:
+2. Read the instructions file via:
 
-   .. code:: bash
-
-       cat bout.txt
+   ``cat bout.txt``
        
-4. Follow instructions to connect to the JupyterLab server
+3. Follow instructions to connect to the JupyterLab server
 
 **Note:**
 
