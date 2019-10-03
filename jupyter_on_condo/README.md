@@ -96,7 +96,7 @@ several benefits over deploying on the VM:
 
    * ``-n`` <number of nodes>; optional; defaults to ``1``
    * ``-p`` <port number>; optional; defaults to ``5959``
-   * ``-t`` <wall time>; optional; defaults to 30 minutes. ``1:00`` will request 1 hour for example
+   * ``-t`` <wall time>; optional; defaults to 30 minutes. ``1:00:00`` will request 1 hour for example
    * ``-v`` = prints more statements
    
    You may want to set or reset the default values (e.g. the account) for the flags by editing lines ``6`` to ``11`` in ``job_script.sh``
@@ -117,7 +117,31 @@ several benefits over deploying on the VM:
 2. You will still need to press ``Ctrl``+``C`` in the terminal(s) you used to connect to the Condos login node form your personal computer
 
 ### Accessing outside the ORNL network
--   If you are outside the ORNL network, you would need to add another step that tunnels
+If you are outside the ORNL network, you would need to tunnel a little differently:
+ 
+1. Follow `step 1` of the instructions from ``bout.txt`` *as is* to make the tunnel
+   between the SHPC login node and the compute node where JupyterLab is running.
+   It should look something like:
+   
+   ``ssh -N -L <port>:localhost:<port> <name of compute node>``
+
+2. `Step 2` of the instructions in ``bout.txt`` will be replaced by two steps.
+    Open a new terminal on your personal computer. 
+    Establish a tunnel from your personal computer to the CADES External Login node via:
+
+   ``ssh -N -L localhost:<port>:localhost:<port> <userid>@cades-extlogin1.ornl.gov``
+
+3. Finally, open a new terminal on your personal computer. 
+
+   1. Log into the CADES External Login node via:
+   
+      ``ssh <userid>@cades-extlogin1.ornl.gov``
+   
+   2. Now, establish a tunnel between this CADES External Login node and the CADES SHPC Condos' login node via:
+   
+      ``ssh -N -L localhost:<port>:localhost:<port> <userid>@or-slurm-login01.ornl.gov``
+
+4. Proceed to `Step 3` and `Step 4` of the instructions from ``bout.txt``, which remain unchanged.
 
 **Note:**
 
