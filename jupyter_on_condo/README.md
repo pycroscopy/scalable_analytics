@@ -111,6 +111,14 @@ several benefits over deploying on the VM:
        
 3. Follow instructions provided in ``bout.txt`` to connect to the JupyterLab server from your personal computer.
 
+### 2. Shutting down
+1. To shut down JupyterLab (and this job), click on ``File`` in the top menu bar in JupyterLab 
+   and select ``Shut Down``. Confirm and you are done. 
+2. You will still need to press ``Ctrl``+``C`` in the terminal(s) you used to connect to the Condos login node form your personal computer
+
+### Accessing outside the ORNL network
+-   If you are outside the ORNL network, you would need to add another step that tunnels
+
 **Note:**
 
   Currently, the JupyterLab server will not require a password. However, it is recommended
