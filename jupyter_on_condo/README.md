@@ -7,6 +7,8 @@ Oak Ridge National Laboratory
 
 10/3/2019
 
+Please [get in touch](somnaths@ornl.gov) with me if you have any questions regarding this document
+
 ## Introduction:
 -   Python, R and Julia are three of the most popular languages for analyzing scientific data. 
     People generally use interactive notebooks via the now ubiquitous - 
