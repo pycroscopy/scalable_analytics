@@ -1,7 +1,10 @@
 #!/bin/bash
 # Author: Suhas Somnath
+# This script will run JupyterLab on a compute node
 
 # Regardless of the rank we want to load the correct (Ana/mini)conda module:
+module purge
+module load PE-gnu
 module load anaconda3/5.1.0-pe3
 
 # Working around the annoying permission denied for runtime directory:
@@ -55,7 +58,7 @@ if [[ $SLURM_PROCID -eq 0 ]]; then
   echo "      localhost:$port" >> bout.txt
   echo -e "\n" >> bout.txt
   echo "4. To shut down JupyterLab (and this job), click on 'File' in the top menu bar in JupyterLab and select 'Shut Down'. Confirm and you are done. You will still need to press 'Ctrl'+'C' in the terminal you used to connect to the login node form your personal computer" >> bout.txt
-  echo "==========================================================================================" >> bout.txt
+  echo "=====================  END OF INSTRUCTIONS  ==============================" >> bout.txt
   # Starting the jupyter lab server here. Note the flags:
   # --no-browser - tells jupyter that there is no available broswer to render the server output
   # --NotebookApp.token='' - Removes authentication. Ideally the user should set their own password. 
