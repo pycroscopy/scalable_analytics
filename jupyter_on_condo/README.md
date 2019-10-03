@@ -75,7 +75,29 @@ several benefits over deploying on the VM:
 5. Download the `job_script.sh` and `start_jlab.sh` scripts in this folder onto the Condo
    
 ### 1. Running the server
-   
+1. Log into the portion of the Condos that runs the SLURM scheduler via: ``ssh <uid>@or-slurm-login01.ornl.gov``
+2. Run the scripts as:
 
-   
-   
+   .. code:: bash
+
+       bash job_script.sh -A <account name that you typically pass>
+
+   Additional flags you can pass to this script:
+
+   * ``-n`` <number of nodes>; optional; defaults to ``1``
+   * ``-p`` <port number>; optional; defaults to ``5959``
+   * ``-t`` <wall time>; optional; defaults to 30 minutes. ``1:00`` will request 1 hour for example
+   * ``-v`` = prints more statements
+    
+3. Read the instructions file via:
+
+   .. code:: bash
+
+       cat bout.txt
+       
+4. Follow instructions to connect to the JupyterLab server
+
+**Note:**
+
+  Currently, the JupyterLab server will not require a password. However, it is recommended
+  to configure a password for security.
