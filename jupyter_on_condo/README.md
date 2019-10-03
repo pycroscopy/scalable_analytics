@@ -88,6 +88,10 @@ several benefits over deploying on the VM:
 
    ``bash job_script.sh -A <account name that you typically pass - e.g. - ccsd, cnms, birthright, etc.>``
 
+   For the ``-A`` flag: check to see if 
+   [your division owns](https://support.cades.ornl.gov/user-documentation/_book/condos/how-to-use/request-access.html) 
+   resources in Condos that you could access. Otherwise, you could use ``-A birthright``.
+   
    Additional flags you can pass to this script:
 
    * ``-n`` <number of nodes>; optional; defaults to ``1``
