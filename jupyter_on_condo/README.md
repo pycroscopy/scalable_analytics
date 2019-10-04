@@ -32,7 +32,7 @@ several benefits over deploying on the VM:
 
 1. **More compute by default** - A single node of the CADES SHPC Condo offers far more 
    [computational power](https://support.cades.ornl.gov/user-documentation/_book/condos/hardware.html)
-   than the default virtual machine (~ 8GB memory + 4 CPU cores) and even offers GPUs that can
+   than the **default** virtual machine (~ 8GB memory + 4 CPU cores) and even offers GPUs that can
    significantly accelerate deep learning workloads.
 2. **Scalable computing** - As the name ("Scalable") suggests, you could easily take advantage of 
    more computational power.
@@ -80,6 +80,16 @@ several benefits over deploying on the VM:
    and
    
    ``wget https://raw.githubusercontent.com/pycroscopy/scalable_analytics/master/jupyter_on_condo/start_jlab.sh``
+   
+5. Set a password for your JupyterLab server via:
+
+   1. First load the Anaconda module by typing: 
+      
+      ``module load anaconda3/5.1.0-pe3``
+   
+   2. Next, set and confirm a password of your choice after typing:
+     
+      ``jupyter notebook password``
    
 5. *OPTIONAL*: Consider joining the `#condo` channel on the [CADES SLACK group](cades@slack.com) to 
    communicate with other users of the CADES SHPC Condos.
@@ -148,5 +158,4 @@ If you are outside the ORNL network, you would need to tunnel a little different
 
 **Note:**
 
-  Currently, the JupyterLab server will not require a password. However, it is recommended
-  to configure a password for security.
+  Currently, the setup above does not encrypt communications between the Condo and JupyterLab.
