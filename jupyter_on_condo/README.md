@@ -65,7 +65,7 @@ several benefits over deploying on the VM:
 -   As of this writing, these instructions will not include access to R, Julia, C++, and Matlab kernels.
 
 ## Configuration
-### 0: One-time setup:
+### 1: One-time setup:
 1. [Request access](https://support.cades.ornl.gov/user-documentation/_book/condos/how-to-use/request-access.html)
    to the Condos
 2. Prepare [prerequisites](https://support.cades.ornl.gov/user-documentation/_book/condos/how-to-use/prerequisites.html)
@@ -95,7 +95,7 @@ several benefits over deploying on the VM:
    communicate with other users of the CADES SHPC Condos.
 
    
-### 1. Running the server
+### 2. Running the server
 1. Run the scripts as:
 
    ``bash job_script.sh -A <account name that you typically pass - e.g. - ccsd, cnms, birthright, etc.>``
@@ -124,10 +124,39 @@ several benefits over deploying on the VM:
 3. Follow instructions provided in ``bout.txt`` to connect to the JupyterLab server from your personal computer.
    Note that you may need to log in with your password to the compute node in `Step 1`. 
 
-### 2. Shutting down
+### 3. Shutting down
 1. To shut down JupyterLab (and this job), click on ``File`` in the top menu bar in JupyterLab 
    and select ``Shut Down``. Confirm and you are done. 
 2. You will still need to press ``Ctrl``+``C`` in the terminal(s) you used to connect to the Condos login node form your personal computer
+
+### Allocation Consumption
+Running such a JupyterLab server on the compute node(s) **does** consume your CADES Condos allocation.
+In other words, your division will be charged the typical rate as you run the JupyterLab server.
+Therefore, please use such a deployment judiciously. Use it to crunch numbers
+rather than using it like a text editor. Consider shutting down the server if you are not actively using it. 
+It is perhaps the best practice to
+do interactive development work on a local jupyter instance and then run a
+dedicated python script in a batch job to make the most efficient use of your
+allocation.
+
+### Troubleshooting
+**Cannot connect because the port is already in use**
+
+Consider changing the port at which the Jupyter server is running via the ``-p`` flag and try running ``job_script.sh`` again.
+
+**A message on JupyterLab on the browser asks you to use a different workspace**
+
+This message appear on the browser if there is another instance of the JupyterLab running on another tab on the browser.
+Consider trying a different workspace name to enter the JupyterLab interface. If that does not work, you may have to
+close the other tabs running JupyterLab. 
+Typically, one sees this message only if the JupyerLab servers on the other browser tabs are running on the same port.
+
+**Login password is rejected even though it is entered correctly**
+
+This is a symptom of multiple users attempting to access different servers
+through the same login node and port number. The connection will succeed
+but the password will be rejected because the server you are accessing is
+someone else's. 
 
 ### Accessing outside the ORNL network
 If you are outside the ORNL network, you would need to tunnel a little differently:
@@ -155,6 +184,19 @@ If you are outside the ORNL network, you would need to tunnel a little different
       ``ssh -N -L localhost:<port>:localhost:<port> <userid>@or-slurm-login01.ornl.gov``
 
 4. Proceed to `Step 3` and `Step 4` of the instructions from ``bout.txt``, which remain unchanged.
+
+### Server Uptime
+Depending on the requested wall-time via the ``-t`` flag and the maximum time allowed by the queue,
+the jupyter server will be killed at least once the job expires (30 mins by default), so you will want to **make sure
+your work is saved often**. 
+
+You can add a flag to the ``sbatch`` command at the end of `job_script.sh`` 
+to resubmit the job automatically to keep a server up like:
+
+``--dependency=afternotok:$SLURM_JOB_ID keep_server_up.slurm``
+
+Note that you will still need to re-establish the tunnel each time it goes down.
+This is something that has not yet been tested.
 
 **Note:**
 
