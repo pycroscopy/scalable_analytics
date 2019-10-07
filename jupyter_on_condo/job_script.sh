@@ -47,7 +47,7 @@ if [ -z "$account" ]; then
 fi
 
 if [[ $verbose -eq 1 ]]; then
-  echo "sending: sbatch -A ${account} -p ${queue} -N ${nnodes} -n ${nnodes} -c 32 -J Jupyter --mem=32G -t ${walltime}  start_jlab.sh ${port} ${HOSTNAME} ${verbose}"
+  echo "sending: sbatch -A ${account} -p ${queue} -N ${nnodes} -c 32 -J Jupyter --mem=32G -t ${walltime}  start_jlab.sh ${port} ${HOSTNAME} ${verbose}"
 fi
 
 echo "Starting SLURM job requesting JupyterLab with ${nnodes} nodes for time: ${walltime}" > bout.txt
@@ -56,4 +56,4 @@ echo "type 'cat bout.txt' for instructions on connecting to the JupyterLab"
 echo "If you don't see a line with =====  END OF INSTRUCTIONS  ===== , you job has not yet started. Try 'cat bout.txt' in a few seconds."
 echo "vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv"
 
-sbatch -A ${account} -p ${queue} -N ${nnodes} -n ${nnodes} -c 32 -J Jupyter --mem=32G -t ${walltime}  -o ./%x-%j.o -e ./%x-%j.e start_jlab.sh ${port} ${HOSTNAME} ${verbose}
+sbatch -A ${account} -p ${queue} -N ${nnodes} -c 32 -J Jupyter --mem=32G -t ${walltime}  -o ./%x-%j.o -e ./%x-%j.e start_jlab.sh ${port} ${HOSTNAME} ${verbose}
