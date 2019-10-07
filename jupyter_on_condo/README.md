@@ -90,8 +90,24 @@ several benefits over deploying on the VM:
    2. Next, set and confirm a password of your choice after typing:
      
       ``jupyter notebook password``
+      
+5. *OPTIONAL*: [Install Dask Dashboard plugins](https://jobqueue.dask.org/en/latest/interactive.html#install-jupyterlab)
+   so that the Dask Dashboard can be transmitted over the same port as that
+   used by JupyterLab. This should save extra tunnelling:
    
-5. *OPTIONAL*: Consider joining the `#condo` channel on the [CADES SLACK group](cades@slack.com) to 
+   1. Install NodeJS (which we'll need to integrate Dask into JLab):
+   
+      ``conda install nodejs -c conda-forge -y``
+
+   2. Install server-side pieces of the Dask-JupyterLab extension:
+
+      ``pip install dask_labextension``
+
+   3. Integrate ``Dask-Labextension`` with Jupyter (requires NodeJS)
+
+      ``jupyter labextension install dask-labextension`` 
+   
+6. *OPTIONAL*: Consider joining the `#condo` channel on the [CADES SLACK group](cades@slack.com) to 
    communicate with other users of the CADES SHPC Condos.
 
    
