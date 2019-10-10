@@ -75,11 +75,11 @@ several benefits over deploying on the VM:
    ``ssh <uid>@or-slurm-login01.ornl.gov``
 4. On the Condos, navigate to a desired directory and then download two scripts via the following commands:
    
-   ``wget https://raw.githubusercontent.com/pycroscopy/scalable_analytics/master/jupyter_on_condo/job_script.sh``
+   ``wget https://raw.githubusercontent.com/pycroscopy/scalable_analytics/master/jupyter_on_condo/slurm/job_script.sh``
    
    and
    
-   ``wget https://raw.githubusercontent.com/pycroscopy/scalable_analytics/master/jupyter_on_condo/start_jlab.sh``
+   ``wget https://raw.githubusercontent.com/pycroscopy/scalable_analytics/master/jupyter_on_condo/slurm/start_jlab.sh``
    
 5. Set a password for your JupyterLab server via:
 
