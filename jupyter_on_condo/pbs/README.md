@@ -5,7 +5,7 @@ Advanced Data and Workflow Group<br>
 National Center for Computational Sciences<br>
 Oak Ridge National Laboratory
 
-10/3/2019
+10/10/2019
 
 Please [get in touch](somnaths@ornl.gov) with me if you have any questions regarding this document
 
@@ -20,16 +20,14 @@ Please see general introduction [here](../README.md)
    on your personal / lab computer
 3. Log into the Condos via:
 
-   ``ssh <uid>@or-slurm-login01.ornl.gov``
-4. On the Condos, navigate to a desired directory and then download two scripts via the following commands:
+   ``ssh <uid>@or-condo-login.ornl.gov``
+4. On the Condos, navigate to a desired directory and then download the script via the following command:
    
-   ``wget https://raw.githubusercontent.com/pycroscopy/scalable_analytics/master/jupyter_on_condo/slurm/job_script.sh``
+   ``wget https://raw.githubusercontent.com/pycroscopy/scalable_analytics/master/jupyter_on_condo/pbs/job_script.pbs``
    
-   and
+5. Change the PBS flags in lines ``4`` to ``16`` in ``job_script.pbs`` to adjust the user group, email address, etc.
    
-   ``wget https://raw.githubusercontent.com/pycroscopy/scalable_analytics/master/jupyter_on_condo/slurm/start_jlab.sh``
-   
-5. Set a password for your JupyterLab server via:
+6. Set a password for your JupyterLab server via:
 
    1. First load the Anaconda module by typing: 
       
@@ -39,7 +37,7 @@ Please see general introduction [here](../README.md)
      
       ``jupyter notebook password``
       
-5. *OPTIONAL*: [Install Dask Dashboard plugins](https://jobqueue.dask.org/en/latest/interactive.html#install-jupyterlab)
+7. *OPTIONAL*: [Install Dask Dashboard plugins](https://jobqueue.dask.org/en/latest/interactive.html#install-jupyterlab)
    so that the Dask Dashboard can be transmitted over the same port as that
    used by JupyterLab. This should save extra tunnelling:
    
@@ -55,48 +53,32 @@ Please see general introduction [here](../README.md)
 
       ``jupyter labextension install dask-labextension`` 
    
-6. *OPTIONAL*: Consider joining the `#condo` channel on the [CADES SLACK group](cades@slack.com) to 
+8. *OPTIONAL*: Consider joining the `#condo` channel on the [CADES SLACK group](cades@slack.com) to 
    communicate with other users of the CADES SHPC Condos.
 
    
 ### 2. Running the server
 1. Run the scripts as:
 
-   ``bash job_script.sh -A <account name that you typically pass - e.g. - ccsd, cnms, birthright, etc.>``
-
-   For the ``-A`` flag: check to see if 
-   [your division owns](https://support.cades.ornl.gov/user-documentation/_book/condos/how-to-use/request-access.html) 
-   resources in Condos that you could access. Otherwise, you could use ``-A birthright``.
+   ``qsub job_script.pbs``
    
-   Additional flags you can pass to this script:
-
-   * ``-n`` <number of nodes>; optional; defaults to ``1``
-   * ``-p`` <port number>; optional; defaults to ``5959``
-   * ``-t`` <wall time>; optional; defaults to 30 minutes. ``1:00:00`` will request 1 hour for example
-   * ``-v`` = prints more statements
-   
-   You may want to set or reset the default values (e.g. the account) for the flags by editing lines ``6`` to ``11`` in ``job_script.sh``
+   You may want to set or reset the default values for how long the server should be up (30 mins), how many nodes to allocate (1 by default) by editing lines ``4`` to ``16`` in ``job_script.pbs``
     
 2. Read the instructions file via:
 
-   ``cat bout.txt``
+   ``cat jupyter_instructions.txt``
    
    This file should present a few dozen lines of instructions. 
    If you do not see instructions on ssh etc., chances are that the scheduler has not 
    run this job just yet. Please wait for 30 seconds to a minute and try again.
        
-3. Follow instructions provided in ``bout.txt`` to connect to the JupyterLab server from your personal computer.
+3. Follow instructions provided in ``jupyter_instructions.txt`` to connect to the JupyterLab server from your personal computer.
    Note that you may need to log in with your password to the compute node in `Step 1`. 
 
 ### 3. Shutting down
 1. To shut down JupyterLab (and this job), click on ``File`` in the top menu bar in JupyterLab 
    and select ``Shut Down``. Confirm and you are done. 
 2. You will still need to press ``Ctrl``+``C`` in the terminal(s) you used to connect to the Condos login node form your personal computer
-
-### Troubleshooting
-**Cannot connect because the port is already in use**
-
-Consider changing the port at which the Jupyter server is running via the ``-p`` flag and try running ``job_script.sh`` again.
 
 ## Other notes
 Please see the parent [readme](../README.md) for notes on troubleshooting, accessing the server from outside the ORNL network, etc.
