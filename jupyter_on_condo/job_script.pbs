@@ -1,0 +1,74 @@
+#!/bin/bash
+
+### Number of compute nodes and, cores per node specified via 'ppn':
+#PBS -l nodes=1:ppn=32
+### How long we want the Jupyter server to run, where walltime=HH:MM:S.
+#PBS -l walltime=0:00:30:0
+### Set the job name. Your output files will share this name.
+#PBS -N Jupyter
+### Enter your email address. Errors will be emailed to this address.
+#PBS -M somnaths@ornl.gov
+### The LDAP group you belong to - cades-birthright, cades-cnms etc.
+#PBS -W group_list=cades-cnms
+### Your account type - ccsd, cnms, Birthright etc.
+#PBS -A cnms
+### Quality of service - burst or std.
+#PBS -l qos=std
+
+### Remove old modules to ensure a clean state.
+module purge
+
+### Load modules (your programming environment)
+module load anaconda3/5.1.0-pe3
+
+### Check loaded modules
+module list
+
+### Forcing MKL to use 1 thread only:
+# MUST KEEP THESE LINES. WILL NOT WORK OTHERWISE
+# export MKL_NUM_THREADS=1
+# export OPENBLAS_NUM_THREADS=1
+
+# Here we will use a random port number to avoid clashes
+function get_random_port() {
+  while true
+  do
+    local port=$RANDOM
+    if [ $port -le 10000 ] && [ $port -ge 1000 ]; then
+      echo $port
+      break
+    fi
+  done
+}
+
+export -f get_random_port
+
+function run_jupyter {
+  #echo "Nodes allocation information in ${PBS_NODEFILE}"
+  #cat $PBS_NODEFILE
+  port=$1
+  echo "==================== START OF INSTRUCTIONS ====================" >> jupyter_instructions.txt
+  echo "Connect the Jupyter server to your personal computer by following the steps below:" >> jupyter_instructions.txt
+  echo "1. Connect the login node (where you are seeing this) with the compute node (where Jupyter is running) by pasting the following command:" >> jupyter_instructions.txt
+  echo -e "\n" >> jupyter_instructions.txt
+  echo "          ssh -N -L ${port}:localhost:${port} ${HOSTNAME}" >> jupyter_instructions.txt
+  echo -e "\n" >> jupyter_instructions.txt
+  echo "2. Open a new terminal window on your personal computer run the following command:" >> jupyter_instructions.txt
+  echo -e "\n" >> jupyter_instructions.txt
+  echo "          ssh -N -L ${port}:localhost:${port} ${USER}@${PBS_O_HOST}.ornl.gov"  >> jupyter_instructions.txt
+  echo -e "\n" >> jupyter_instructions.txt
+  echo "3. Open a browser on your personal computer and enter the following address:" >> jupyter_instructions.txt
+  echo -e "\n" >> jupyter_instructions.txt
+  echo "          localhost:${port}" >> jupyter_instructions.txt
+  echo -e "\n" >> jupyter_instructions.txt
+  echo "4. To shut down JupyterLab (and this job), click on 'File' in the top menu bar in JupyterLab and select 'Shut Down'. Confirm and you are done. You will still need to press 'Ctrl'+'C' in the terminals you typed the 'ssh -N -L...' commands" >> jupyter_instructions.txt
+  echo "==================== END OF INSTRUCTIONS =======================" >> jupyter_instructions.txt
+  unset XDG_RUNTIME_DIR
+  export HOME=$HOME
+  jupyter-lab --ip=0.0.0.0 --no-browser --NotebookApp.token='' --port $port --notebook-dir=$HOME
+}
+
+run_jupyter $(get_random_port)
+# Cancel job now:
+echo "Cancelling job now"
+canceljob $PBS_JOBID
