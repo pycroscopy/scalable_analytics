@@ -67,8 +67,8 @@ several benefits over deploying on the VM:
 ## Main instructions
 The CADES SHPC Condos are transitioning from the Moab / Torque (PBS) scheduler to SLURM in Fall 2019.
 The scripts for getting JupyterLab to run on each kind of scheduler are different. Please follow instructions specific to your group:
-* [PBS](./pbs/) - CNMS, etc.
-* [SLURM](./slurm/) - Birthright, CCSD, etc. 
+* [PBS](cades_shpc_condos/pbs/) - CNMS, etc.
+* [SLURM](cades_shpc_condos/slurm/) - Birthright, CCSD, etc. 
 
 
 ### Allocation Consumption
